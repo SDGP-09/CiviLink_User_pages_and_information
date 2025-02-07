@@ -1,5 +1,6 @@
 package entities;
 import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
 import lombok.*;
 
 @Entity
@@ -7,7 +8,11 @@ import lombok.*;
 @Getter @Setter
 @NoArgsConstructor @AllArgsConstructor
 public class Consultant extends User {
-        private String expertise;
-        private int yearsOfExperience;
+        private String specialization;
+        private String qualifications;
+        private String services;
+        private double minProjectValue;
+        private double professionalFee;
+        private double platformFee;
 }
 

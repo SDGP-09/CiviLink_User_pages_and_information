@@ -1,5 +1,6 @@
 package entities;
 import jakarta.persistence.*;
+import jakarta.persistence.DiscriminatorValue;
 import lombok.*;
 
 @Entity
@@ -8,6 +9,9 @@ import lombok.*;
 @NoArgsConstructor @AllArgsConstructor
 public class Contractor extends User {
     private String companyName;
-    private String specialization;
+    private double ratings;
+    private String ongoingWorks;
+    private String hotDeals;
+    private String completedWork;
 }
 
