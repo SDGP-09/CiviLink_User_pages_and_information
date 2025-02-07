@@ -9,7 +9,6 @@ import entities.User;
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    // Custom search query: search by name, location, or userType
     @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(u.location) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
             "OR LOWER(u.userType) LIKE LOWER(CONCAT('%', :keyword, '%'))")
