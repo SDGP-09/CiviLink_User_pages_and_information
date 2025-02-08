@@ -1,9 +1,5 @@
-package dtos;
+package com.example.demo.dtos;
 
-import lombok.*;
-
-//@Getter @Setter
-//@NoArgsConstructor @AllArgsConstructor
 public class UserDTO {
     private Long id;
     private String name;
@@ -27,7 +23,6 @@ public class UserDTO {
     public UserDTO() {
     }
 
-    // Parameterized Constructor
     public UserDTO(Long id, String name, String location, String profilePicture, String userType) {
         this.id = id;
         this.name = name;
@@ -59,7 +54,6 @@ public class UserDTO {
         this.platformFee = platformFee;
     }
 
-    // Getters
     public Long getId() {
         return id;
     }
@@ -124,7 +118,6 @@ public class UserDTO {
         return platformFee;
     }
 
-    // Setters
     public void setId(Long id) {
         this.id = id;
     }

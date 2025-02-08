@@ -1,13 +1,13 @@
-package services;
+package com.example.demo.services;
 
 import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.stream.Collectors;
-import dtos.UserDTO;
-import entities.User;
-import entities.Contractor;
-import entities.Consultant;
-import repositories.UserRepository;
+import com.example.demo.dtos.UserDTO;
+import com.example.demo.entities.User;
+import com.example.demo.entities.Contractor;
+import com.example.demo.entities.Consultant;
+import com.example.demo.repositories.UserRepository;
 
 @Service
 public class UserService {
