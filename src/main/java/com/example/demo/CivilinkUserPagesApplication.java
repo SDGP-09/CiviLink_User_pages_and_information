@@ -9,5 +9,4 @@ public class CivilinkUserPagesApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(CivilinkUserPagesApplication.class, args);
 	}
-
 }

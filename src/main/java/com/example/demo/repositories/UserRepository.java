@@ -8,10 +8,7 @@ import com.example.demo.entities.User;
 
 @Repository
 public interface UserRepository extends JpaRepository<User, Long> {
-
-    @Query("SELECT u FROM User u WHERE LOWER(u.name) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(u.location) LIKE LOWER(CONCAT('%', :keyword, '%')) " +
-            "OR LOWER(u.userType) LIKE LOWER(CONCAT('%', :keyword, '%'))")
+    @Query("SELECT u FROM User u WHERE u.name LIKE %:keyword% OR u.location LIKE %:keyword%")
     List<User> searchUsers(String keyword);
 }
 

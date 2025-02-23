@@ -1,70 +1,67 @@
 package com.example.demo.entities;
+
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "users")
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "user_type", discriminatorType = DiscriminatorType.STRING)
-public abstract class User {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     private String name;
     private String location;
-    private String profilePicture;
+    private String profilePicture; // Cloudinary URL
 
-    @Column(name = "user_type", insertable = false, updatable = false)
-    private String userType;
+    private String companyName;
+    private double ratings;
+    private String ongoingWorks;
+    private String hotDeals;
+    private String completedWork;
+    private boolean available;
 
-    public User() {
-    }
+    public User() {}
 
-    public User(Long id, String name, String location, String profilePicture, String userType) {
-        this.id = id;
+    public User(String name, String location, String profilePicture, String companyName,
+                double ratings, String ongoingWorks, String hotDeals, String completedWork,
+                boolean available) {
         this.name = name;
         this.location = location;
         this.profilePicture = profilePicture;
-        this.userType = userType;
+        this.companyName = companyName;
+        this.ratings = ratings;
+        this.ongoingWorks = ongoingWorks;
+        this.hotDeals = hotDeals;
+        this.completedWork = completedWork;
+        this.available = available;
     }
 
-    public Long getId() {
-        return id;
-    }
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 
-    public String getName() {
-        return name;
-    }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
 
-    public String getLocation() {
-        return location;
-    }
+    public String getLocation() { return location; }
+    public void setLocation(String location) { this.location = location; }
 
-    public String getProfilePicture() {
-        return profilePicture;
-    }
+    public String getProfilePicture() { return profilePicture; }
+    public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
 
-    public String getUserType() {
-        return userType;
-    }
+    public String getCompanyName() { return companyName; }
+    public void setCompanyName(String companyName) { this.companyName = companyName; }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public double getRatings() { return ratings; }
+    public void setRatings(double ratings) { this.ratings = ratings; }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public String getOngoingWorks() { return ongoingWorks; }
+    public void setOngoingWorks(String ongoingWorks) { this.ongoingWorks = ongoingWorks; }
 
-    public void setLocation(String location) {
-        this.location = location;
-    }
+    public String getHotDeals() { return hotDeals; }
+    public void setHotDeals(String hotDeals) { this.hotDeals = hotDeals; }
 
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
-    }
+    public String getCompletedWork() { return completedWork; }
+    public void setCompletedWork(String completedWork) { this.completedWork = completedWork; }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
+    public boolean isAvailable() { return available; }
+    public void setAvailable(boolean available) { this.available = available; }
 }
