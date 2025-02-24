@@ -74,6 +74,7 @@ import java.util.List;
 public class User {
 
     @Id
+    private String id;
     private String name;
     private String location;
     private Double rating;
@@ -83,6 +84,14 @@ public class User {
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     private Availability availability;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public Availability getAvailability() {
         return availability;

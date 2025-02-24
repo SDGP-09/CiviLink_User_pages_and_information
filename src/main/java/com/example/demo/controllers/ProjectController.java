@@ -1,10 +1,8 @@
 package com.example.demo.controllers;
 
-//package com.example.projectmanagement.controller;
-
-import com.example.projectmanagement.model.Project;
-//import com.example.demo.dtos.ProjectDTO;
-import com.example.projectmanagement.service.ProjectService;
+import com.example.demo.entities.Project;
+import com.example.demo.dtos.ProjectDTO;
+import com.example.demo.services.ProjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +17,7 @@ public class ProjectController {
     private ProjectService projectService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<Project>> getProjects(@PathVariable Long userId) {
+    public ResponseEntity<List<Project>> getProjects(@PathVariable String userId) {
         return ResponseEntity.ok(projectService.getProjectsByUser(userId));
     }
 
@@ -29,7 +27,7 @@ public class ProjectController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteProject(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteProject(@PathVariable String id) {
         projectService.deleteProject(id);
         return ResponseEntity.noContent().build();
     }

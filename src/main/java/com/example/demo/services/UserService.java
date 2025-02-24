@@ -1,4 +1,4 @@
-//package com.example.demo.services;
+package com.example.demo.services;
 //
 //import com.example.demo.dtos.UserDTO;
 //import com.example.demo.entities.User;
@@ -76,10 +76,9 @@
 //    }
 //
 //}
-package com.example.projectmanagement.service;
 
-import com.example.projectmanagement.model.User;
-import com.example.projectmanagement.repository.UserRepository;
+import com.example.demo.entities.User;
+import com.example.demo.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.Optional;
@@ -90,11 +89,11 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public Optional<User> getUserById(Long id) {
+    public Optional<User> getUserById(String id) {
         return userRepository.findById(id);
     }
 
-    public User updateUser(Long id, User updatedUser) {
+    public User updateUser(String id, User updatedUser) {
         updatedUser.setId(id);
         return userRepository.save(updatedUser);
     }

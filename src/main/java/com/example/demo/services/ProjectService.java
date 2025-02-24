@@ -1,11 +1,7 @@
-//package com.example.demo.services;
-//
-//public class ProjectService {
-//}
-package com.example.projectmanagement.service;
+package com.example.demo.services;
 
-import com.example.projectmanagement.model.Project;
-import com.example.projectmanagement.repository.ProjectRepository;
+import com.example.demo.entities.Project;
+import com.example.demo.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +13,7 @@ public class ProjectService {
     @Autowired
     private ProjectRepository projectRepository;
 
-    public List<Project> getProjectsByUser(Long userId) {
+    public List<Project> getProjectsByUser(String userId) {
         return projectRepository.findByUserId(userId);
     }
 
@@ -25,7 +21,7 @@ public class ProjectService {
         return projectRepository.save(project);
     }
 
-    public void deleteProject(Long projectId) {
+    public void deleteProject(String projectId) {
         projectRepository.deleteById(projectId);
     }
 }

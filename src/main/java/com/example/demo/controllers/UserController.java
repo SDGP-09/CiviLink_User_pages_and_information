@@ -4,40 +4,26 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import com.example.demo.services.UserService;
+import com.example.demo.entities.User;
 import com.example.demo.dtos.UserDTO;
+import org.springframework.http.ResponseEntity;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
 public class UserController {
-    private final UserService userService;
 
     @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
-
-    @GetMapping("/search")
-    public List<UserDTO> searchUsers(@RequestParam String query) {
-        return userService.searchUsers(query);
-    }
+    private UserService userService;
 
     @GetMapping("/{id}")
-    public UserDTO getUserProfile(@PathVariable Long id) {
-        return userService.getUserById(id);
-    }
-
-    @PostMapping("/user")
-    public UserDTO addUser(@RequestBody UserDTO userDTO) {
-        return userService.addUser(userDTO);
+    public ResponseEntity<Optional<User>> getUser(@PathVariable String id) {
+        return ResponseEntity.ok(userService.getUserById(id));
     }
 
     @PutMapping("/{id}")
-    public UserDTO updateUser(@PathVariable Long id, @RequestBody UserDTO userDTO) {
-        return userService.updateUser(id, userDTO);
-    }
-
-    @DeleteMapping("/{id}")
-    public void deleteUser(@PathVariable Long id) {
-        userService.deleteUser(id);
+    public ResponseEntity<User> updateUser(@PathVariable String id, @RequestBody User updatedUser) {
+        return ResponseEntity.ok(userService.updateUser(id, updatedUser));
     }
 }
+

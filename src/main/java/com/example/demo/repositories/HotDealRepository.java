@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface HotDealRepository extends JpaRepository<HotDeal, Long> {
-    List<HotDeal> findByUserId(Long userId);
+public interface HotDealRepository extends JpaRepository<HotDeal, String> {
+    List<HotDeal> findByUserId(String userId);
 }
 
