@@ -1,8 +1,8 @@
-//package com.example.demo.controllers;
+package com.example.demo.controllers;
 //
 //public class HotDealController {
 //}
-package com.example.projectmanagement.controller;
+//package com.example.projectmanagement.controller;
 
 import com.example.projectmanagement.model.HotDeal;
 import com.example.projectmanagement.service.HotDealService;

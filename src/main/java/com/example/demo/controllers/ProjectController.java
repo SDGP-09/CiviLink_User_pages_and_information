@@ -1,8 +1,6 @@
-//package com.example.demo.controllers;
-//
-//public class ProjectController {
-//}
-package com.example.projectmanagement.controller;
+package com.example.demo.controllers;
+
+//package com.example.projectmanagement.controller;
 
 import com.example.projectmanagement.model.Project;
 import com.example.projectmanagement.service.ProjectService;

@@ -1,8 +1,7 @@
-//package com.example.demo.controllers;
-//
-//public class AvailabilityController {
-//}
-package com.example.projectmanagement.controller;
+package com.example.demo.controllers;
+
+
+//package com.example.projectmanagement.controller;
 
 import com.example.projectmanagement.model.Availability;
 import com.example.projectmanagement.service.AvailabilityService;
