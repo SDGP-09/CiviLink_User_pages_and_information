@@ -41,28 +41,33 @@ public class AvailabilityService {
         return availabilityRepository.save(availability);
     }
 
-    // Get Availability by User ID
+    // Read - Get Availability by User ID
     public Availability getAvailabilityByUserId(String userId) {
         return availabilityRepository.findByUserId(userId);
     }
 
-    // Get Availability by ID
-//    public Optional<Availability> getAvailabilityById(Long id) {
-//        return availabilityRepository.findById(id);
-//    }
+    // Read - Get Availability by ID
+    public Optional<Availability> getAvailabilityById(String id) {
+        return availabilityRepository.findById(id);
+    }
 
-    // Get All Availabilities
+    // Read - Get All Availabilities
     public List<Availability> getAllAvailabilities() {
         return availabilityRepository.findAll();
     }
 
-    // Update Availability
+    // Update - Update an Existing Availability
     public Availability updateAvailability(Availability availability) {
         return availabilityRepository.save(availability);
     }
 
-    // Delete Availability by ID
-    public void deleteAvailability(Long id) {
+    // Delete - Remove Availability by ID
+    public void deleteAvailabilityById(String id) {
         availabilityRepository.deleteById(id);
+    }
+
+    // Delete - Remove All Availabilities
+    public void deleteAllAvailabilities() {
+        availabilityRepository.deleteAll();
     }
 }
