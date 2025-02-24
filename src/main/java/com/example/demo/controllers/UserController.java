@@ -22,6 +22,11 @@ public class UserController {
         return ResponseEntity.ok(userService.createUser(user));
     }
 
+    @GetMapping("/search")
+    public ResponseEntity<List<User>> searchUsers(@RequestParam String query) {
+        return ResponseEntity.ok(userService.searchUsers(query));
+    }
+
     // Get all users
     @GetMapping
     public ResponseEntity<List<User>> getAllUsers() {
