@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 public class Project {
 
     @Id
+    private String id;
     private String name;
     private String status; // Ongoing, Completed
     private int progress;
@@ -24,6 +25,14 @@ public class Project {
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 
     public String getName() {
         return name;
