@@ -1,11 +1,7 @@
-//package com.example.demo.services;
-//
-//public class HotDealService {
-//}
-package com.example.projectmanagement.service;
+package com.example.demo.services;
 
-import com.example.projectmanagement.model.HotDeal;
-import com.example.projectmanagement.repository.HotDealRepository;
+import com.example.demo.entities.HotDeal;
+import com.example.demo.repositories.HotDealRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -17,7 +13,7 @@ public class HotDealService {
     @Autowired
     private HotDealRepository hotDealRepository;
 
-    public List<HotDeal> getHotDealsByUser(Long userId) {
+    public List<HotDeal> getHotDealsByUser(String userId) {
         return hotDealRepository.findByUserId(userId);
     }
 
@@ -25,12 +21,12 @@ public class HotDealService {
         return hotDealRepository.save(hotDeal);
     }
 
-    public HotDeal updateHotDeal(Long id, HotDeal updatedHotDeal) {
+    public HotDeal updateHotDeal(String id, HotDeal updatedHotDeal) {
         updatedHotDeal.setId(id);
         return hotDealRepository.save(updatedHotDeal);
     }
 
-    public void deleteHotDeal(Long id) {
+    public void deleteHotDeal(String id) {
         hotDealRepository.deleteById(id);
     }
 }

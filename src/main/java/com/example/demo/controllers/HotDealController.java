@@ -1,11 +1,7 @@
 package com.example.demo.controllers;
-//
-//public class HotDealController {
-//}
-//package com.example.projectmanagement.controller;
 
-import com.example.projectmanagement.model.HotDeal;
-import com.example.projectmanagement.service.HotDealService;
+import com.example.demo.entities.HotDeal;
+import com.example.demo.services.HotDealService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -20,7 +16,7 @@ public class HotDealController {
     private HotDealService hotDealService;
 
     @GetMapping("/{userId}")
-    public ResponseEntity<List<HotDeal>> getHotDeals(@PathVariable Long userId) {
+    public ResponseEntity<List<HotDeal>> getHotDeals(@PathVariable String userId) {
         return ResponseEntity.ok(hotDealService.getHotDealsByUser(userId));
     }
 
@@ -30,12 +26,12 @@ public class HotDealController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<HotDeal> updateHotDeal(@PathVariable Long id, @RequestBody HotDeal hotDeal) {
+    public ResponseEntity<HotDeal> updateHotDeal(@PathVariable String id, @RequestBody HotDeal hotDeal) {
         return ResponseEntity.ok(hotDealService.updateHotDeal(id, hotDeal));
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteHotDeal(@PathVariable Long id) {
+    public ResponseEntity<Void> deleteHotDeal(@PathVariable String id) {
         hotDealService.deleteHotDeal(id);
         return ResponseEntity.noContent().build();
     }

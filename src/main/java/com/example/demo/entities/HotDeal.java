@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "hot_deals")
 public class HotDeal {
         @Id
+        private String id;
         private String title; // e.g., "Spring Special Offer"
         private String description; // e.g., "20% off on all residential projects"
         private Boolean isActive; // Whether the deal is enabled/disabled
@@ -20,6 +21,14 @@ public class HotDeal {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Boolean getActive() {

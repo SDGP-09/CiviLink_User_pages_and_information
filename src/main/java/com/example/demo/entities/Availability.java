@@ -6,6 +6,7 @@ import jakarta.persistence.*;
 @Table(name = "availability")
 public class Availability {
     @Id
+    private String id;
     private String status; // Available / Unavailable
 
     @OneToOne
@@ -18,6 +19,14 @@ public class Availability {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public User getUser() {
