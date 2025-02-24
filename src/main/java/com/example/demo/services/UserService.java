@@ -19,6 +19,11 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public List<User> searchUsers(String query) {
+        return userRepository.findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(query, query);
+    }
+
+
     // Get all users
     public List<User> getAllUsers() {
         return userRepository.findAll();
