@@ -9,7 +9,17 @@ public class Project {
     @Id
     private String name;
     private String status; // Ongoing, Completed
+    private int progress;
     private String description;
+
+    public Project() {}
+
+    public Project(String name, String status, int progress, String description) {
+        this.name = name;
+        this.status = status;
+        this.progress = progress;
+        this.description = description;
+    }
 
     @ManyToOne
     @JoinColumn(name = "user_id")
@@ -37,6 +47,14 @@ public class Project {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getProgress() {
+        return progress;
+    }
+
+    public void setProgress(int progress) {
+        this.progress = progress;
     }
 
     public User getUser() {
