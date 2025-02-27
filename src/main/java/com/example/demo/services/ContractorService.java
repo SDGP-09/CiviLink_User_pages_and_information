@@ -1,6 +1,6 @@
 package com.example.demo.services;
 
-
+import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.entities.Contractor;
 import com.example.demo.repositories.ContractorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +38,10 @@ public class ContractorService {
 
     public Optional<ContractorDTO> getContractorProfile(Long id) {
         Optional<Contractor> contractor = contractorRepository.findById(id);
+        if (contractor.isEmpty()) {
+            throw new ResourceNotFoundException("Contractor not found with id: " + id);
+        }
+        Contractor savedContractor = contractor.get();
         return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
     }
 
