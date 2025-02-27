@@ -1,6 +1,6 @@
 package com.example.demo.controllers;
 
-import com.example.demo.entities.Contractor;
+import com.example.demo.dtos.ContractorDTO;
 import com.example.demo.services.ContractorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -16,17 +16,22 @@ public class ContractorController {
     @Autowired
     private ContractorService contractorService;
 
-    // Search for contractors by name or location
+    @PostMapping
+    public ResponseEntity<String> createContractor(@RequestBody ContractorDTO contractorDTO) {
+        contractorService.addContractor(contractorDTO);
+        return ResponseEntity.ok("Contractor Added Successfully");
+    }
+
     @GetMapping("/search")
-    public ResponseEntity<List<Contractor>> searchContractors(@RequestParam String query) {
+    public ResponseEntity<List<ContractorDTO>> searchContractors(@RequestParam String query) {
         return ResponseEntity.ok(contractorService.searchContractors(query));
     }
 
-    // Get a contractor's public profile
     @GetMapping("/{id}")
-    public ResponseEntity<Contractor> getContractorProfile(@PathVariable Long id) {
-        Optional<Contractor> contractor = contractorService.getContractorProfile(id);
+    public ResponseEntity<ContractorDTO> getContractorProfile(@PathVariable Long id) {
+        Optional<ContractorDTO> contractor = contractorService.getContractorProfile(id);
         return contractor.map(ResponseEntity::ok).orElseGet(() -> ResponseEntity.notFound().build());
     }
+
 }
 
