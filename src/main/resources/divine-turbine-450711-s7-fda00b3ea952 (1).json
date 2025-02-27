@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "divine-turbine-450711-s7",
+  "private_key_id": "fda00b3ea952e73ab992836a84feefcdece475e5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQDPYaeNR5VVmUvw\ngsZTy5H0VXWhFuOB/P8q5x5ODxe8Ia+mdZX6tN9Rk1a8VIlEk7k30cw0NvTm3VdB\nqi2rPkf/2w7mNcmdqJcu3ppoXd/3btHtvyVJn4td509dblDuRem2b5ajJlOeEbT0\nbb6w8ERi4GmAOYIMtAmgE2nW/ClajFPpN9s0fbWKnM1iuoIxKTemYk7ROmsbNFiG\nz4YUKhwjCPgoVxsouAqO95QMwcfiDte+2m39+Gx2r05Sj+AiPhVCSbm6DdAmOlTQ\njt9w0u/aUGsmkUvyMtxrxzrUX3/EP2hBZrc4kqElp33taT8BdhZ04oLVRGdzr94C\nPhq+JouvAgMBAAECggEADtzn3kdIG6dt+uHUhwLrBgDt+kqiqZlRTGjeEiggwloD\ntcFtq1c1Pip6J+tDH0gbGTYPFZruuHEapNkmhsRi8qJnkfY+6e7ATxqjJGG+AITP\nxONTL9Cgc211kbOrVzhphKrAuBayHX0VZANNjG7b594/kXINsQ1iNzfM+Rx/dj7B\nZRnm0B9RSM3npCg04PX8qH6fedIyZwOd/r/gzBtOPN95JbjJXBUjfMizhTuYaOKR\nsfj4ynWrk0XzWFWev8TKRjrn7GgeFXjjLCh0PVd5EJyXBI/L5JcHfWZePgxzdIuZ\nu5ujDzYqi6U/xNNdg+klCwtD1ZERrKa4HCSiUe6RQQKBgQDuNB0xendJVC/2wjVP\nJWMdcm1OaKplSn2aXf1m3qT59DZxLU3oyrw6UhPlEKWp8eC5UIaMf3NROJatp9zB\nBZF8tDUN/KLPEOYjb11NTamo2MPC7bjffcsjSRBwSSzr7JH2JoYJmwyoHJM4EL6V\nFhAr8g8wJCbMGhSvkjFRrcAhYQKBgQDe4AlIAG+JXXBbVpF16XHArth/ihmFcxOr\nceqCZ7Yq1tDkHYozWvV1xG2BNLtk0fyZQDyDElxyA6P1L2qE5vWgns2lLrorkDwD\nUn+K9D/7n7xQFSf5GwZSe7mXH/PfKmjropHUpcukBXBOQFhYiBzGlVb0P1+Yv8cR\nuOE2XbD3DwKBgQDcQ1JPY1gUdYWYnsLeucqp+xp6K6yM11HHwWvFiNFy1FDXXLYz\nMezV3PnKkhcuS5yqn3ybRGskyrgCQjuOPRDoCFca5ObDpHO6hor3JX5hxHdYs6uE\n9fQ2X6SUwAWK7wmVXNAK59XPSgUUDd+9SlaP3FgRAwzhJKjGJN/4EDueYQKBgF6Z\nRzc5gB4U/AC40Mr0iCTZ0ejojAaZnqqxknFBZg/u2AFLDILZw7/13Ojvoe6cNpQx\nsL2NiJGYO/pw4syAX5eKcA0BtWGSOfbLCHnJTHMYDM0M/cd9EgTmoRKlLFT34krJ\n2Q4iRTpcWJvOMfF57ITZlGvdjkz+cZdzGpyBzgA/AoGAJy3xvOs7GgUzORpeClLA\nBUItfZJTBiO5Yqg2yt0Tq7p3HpcdRwrQ40kIJdeqg7oqXk2L2hdA+daAUoX5T1pf\n+uIzWH5SiFRusvQV2zdUSlwszIsYNfyoJXyvINDEvEINukwA+sZ8+xHnsy3sdgJx\nNHHv6CY2AcMYB5nqV0C+lEw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "github-action-sa@divine-turbine-450711-s7.iam.gserviceaccount.com",
+  "client_id": "112970157119213778789",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/github-action-sa%40divine-turbine-450711-s7.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
