@@ -1,4 +1,3 @@
-
 package com.example.demo.controllers;
 
 import com.example.demo.services.StorageService;
@@ -23,6 +22,16 @@ public class ImageController {
             return ResponseEntity.ok(url);
         } catch (IOException e) {
             return ResponseEntity.status(500).body("Upload Failed");
+        }
+    }
+
+    @DeleteMapping("/delete")
+    public ResponseEntity<String> deleteImage(@RequestParam("url") String imageUrl) {
+        try {
+            storageService.deleteFile(imageUrl);
+            return ResponseEntity.ok("Image Deleted Successfully");
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(e.getMessage());
         }
     }
 }

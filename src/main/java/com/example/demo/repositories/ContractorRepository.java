@@ -7,7 +7,6 @@ import java.util.List;
 
 @Repository
 public interface ContractorRepository extends JpaRepository<Contractor, Long> {
-    // Find contractors by name or location (case-insensitive)
     List<Contractor> findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(String name, String location);
 }
 
