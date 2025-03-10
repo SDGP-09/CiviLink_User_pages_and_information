@@ -5,7 +5,6 @@ import jakarta.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "contractors")
 public class Contractor {
 
     @Id
@@ -17,7 +16,7 @@ public class Contractor {
     @Column(nullable = false)
     private String location;
 
-    @Column(nullable = true)
+
     private String companyName;
 
     @OneToMany(mappedBy = "contractor")
