@@ -1,10 +1,12 @@
 package com.example.demo.dtos;
 
+import lombok.Data;
+
 public class ContractorDTO {
     private String name;
     private String location;
     private String companyName;
-    private Double rating;
+//    private Double rating;
     private String profilePicture;
 
     // Constructors
@@ -14,7 +16,7 @@ public class ContractorDTO {
         this.name = name;
         this.location = location;
         this.companyName = companyName;
-        this.rating = rating;
+//        this.rating = rating;
         this.profilePicture = profilePicture;
     }
 
@@ -39,12 +41,12 @@ public class ContractorDTO {
         this.companyName = companyName;
     }
 
-    public Double getRating() {
-        return rating;
-    }
-    public void setRating(Double rating) {
-        this.rating = rating;
-    }
+//    public Double getRating() {
+//        return rating;
+//    }
+//    public void setRating(Double rating) {
+//        this.rating = rating;
+//    }
 
     public String getProfilePicture() {
         return profilePicture;

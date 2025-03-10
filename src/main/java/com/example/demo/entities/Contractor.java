@@ -2,12 +2,13 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "contractors")
 public class Contractor {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Auto-increment ID
     private Long id;
 
     @Column(nullable = false)
@@ -16,10 +17,14 @@ public class Contractor {
     @Column(nullable = false)
     private String location;
 
-    @Column(nullable = false)
+    @Column(nullable = true)
     private String companyName;
 
-    private Double rating;
+    @OneToMany(mappedBy = "contractor")
+    private List<Rating> rating;
+
+
+
     private String profilePicture; // URL of the contractor's profile picture
     private String availableServices;
 
@@ -30,7 +35,7 @@ public class Contractor {
         this.name = name;
         this.location = location;
         this.companyName = companyName;
-        this.rating = rating;
+//        this.rating = rating
         this.profilePicture = profilePicture;
         this.availableServices = availableServices;
     }
@@ -45,9 +50,6 @@ public class Contractor {
 
     public String getCompanyName() { return companyName; }
     public void setCompanyName(String companyName) { this.companyName = companyName; }
-
-    public Double getRating() { return rating; }
-    public void setRating(Double rating) { this.rating = rating; }
 
     public String getProfilePicture() { return profilePicture; }
     public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }

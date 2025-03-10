@@ -21,7 +21,7 @@ public class ContractorService {
         contractor.setName(contractorDTO.getName());
         contractor.setLocation(contractorDTO.getLocation());
         contractor.setCompanyName(contractorDTO.getCompanyName());
-        contractor.setRating(contractorDTO.getRating());
+//        contractor.setRating(contractorDTO.getRating());
         contractor.setProfilePicture(contractorDTO.getProfilePicture());
 
         contractorRepository.save(contractor);
@@ -30,19 +30,21 @@ public class ContractorService {
 
 
     public List<ContractorDTO> searchContractors(String query) {
-        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(query, query);
-        return contractors.stream()
-                .map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()))
-                .toList();
+//        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(query, query);
+//        return contractors.stream()
+//                .map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()))
+//                .toList();
+        return null;
     }
 
     public Optional<ContractorDTO> getContractorProfile(Long id) {
-        Optional<Contractor> contractor = contractorRepository.findById(id);
-        if (contractor.isEmpty()) {
-            throw new ResourceNotFoundException("Contractor not found with id: " + id);
-        }
-        Contractor savedContractor = contractor.get();
-        return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
+//        Optional<Contractor> contractor = contractorRepository.findById(id);
+//        if (contractor.isEmpty()) {
+//            throw new ResourceNotFoundException("Contractor not found with id: " + id);
+//        }
+//        Contractor savedContractor = contractor.get();
+//        return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
+        return null;
     }
 
 }
