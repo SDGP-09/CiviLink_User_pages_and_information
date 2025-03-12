@@ -12,6 +12,8 @@ public class Rating {
 
     private int rating;
 
+    private Long senderId;
+
 
     @ManyToOne
     @JoinColumn(
@@ -49,11 +51,24 @@ public class Rating {
         this.contractor = contractor;
     }
 
+    public Long getSenderId() {
+        return senderId;
+    }
 
-    public Rating(int rating, Contractor contractor) {
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
+    public void setSenderId(Long senderId) {
+        this.senderId = senderId;
+    }
+
+    public Rating(int rating, Contractor contractor, Long sendingId) {
 
         this.rating = rating;
 
         this.contractor = contractor;
+
+        this.senderId = sendingId;
     }
 }

@@ -1,14 +1,19 @@
 package com.example.demo.services.impl;
 
+import com.example.demo.dtos.request.AddUpdateRatingDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.response.RatingSummeryResponseDTO;
+import com.example.demo.entities.Rating;
 import com.example.demo.exception.ResourceNotFoundException;
+import com.example.demo.repositories.ContractorRepository;
 import com.example.demo.repositories.RatingRepository;
 import com.example.demo.services.RatingService;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class RatingServiceImpl implements RatingService {
@@ -16,6 +21,9 @@ public class RatingServiceImpl implements RatingService {
 
     @Autowired
     private RatingRepository ratingRepository;
+
+    @Autowired
+    private ContractorRepository contractorRepository;
 
     @Override
     public RatingSummeryResponseDTO getRatingSummery(IdBasedRequestDTO id) {
@@ -41,5 +49,31 @@ public class RatingServiceImpl implements RatingService {
         }
 
 
+    }
+
+    @Transactional
+    @Override
+    public void addUpdateRating(AddUpdateRatingDTO addUpdateRatingDTO) {
+        Optional<Rating> existingRatingOpt = ratingRepository.findBySenderIdAndContractorId(addUpdateRatingDTO.getRateSender(), addUpdateRatingDTO.getRateReceiver());
+        if (existingRatingOpt.isPresent()) {
+
+            Rating existingRating = existingRatingOpt.get();
+            existingRating.setRating(addUpdateRatingDTO.getRating());
+            ratingRepository.save(existingRating);
+
+        } else {
+
+            Rating newRating = new Rating();
+            newRating.setSenderId(addUpdateRatingDTO.getRateSender());
+
+
+            newRating.setContractor(
+                    contractorRepository.findById(addUpdateRatingDTO.getRateReceiver())
+                            .orElseThrow(() -> new IllegalArgumentException("Contractor not found"))
+            );
+
+            newRating.setRating(addUpdateRatingDTO.getRating());
+            ratingRepository.save(newRating);
+        }
     }
 }
