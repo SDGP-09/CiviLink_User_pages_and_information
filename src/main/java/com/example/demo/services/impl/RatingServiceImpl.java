@@ -1,6 +1,6 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.dtos.request.AddUpdateRatingDTO;
+import com.example.demo.dtos.request.AddUpdateRatingRequestDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.response.RatingSummeryResponseDTO;
 import com.example.demo.entities.Rating;
@@ -53,26 +53,26 @@ public class RatingServiceImpl implements RatingService {
 
     @Transactional
     @Override
-    public void addUpdateRating(AddUpdateRatingDTO addUpdateRatingDTO) {
-        Optional<Rating> existingRatingOpt = ratingRepository.findBySenderIdAndContractorId(addUpdateRatingDTO.getRateSender(), addUpdateRatingDTO.getRateReceiver());
+    public void addUpdateRating(AddUpdateRatingRequestDTO addUpdateRatingRequestDTO) {
+        Optional<Rating> existingRatingOpt = ratingRepository.findBySenderIdAndContractorId(addUpdateRatingRequestDTO.getRateSender(), addUpdateRatingRequestDTO.getRateReceiver());
         if (existingRatingOpt.isPresent()) {
 
             Rating existingRating = existingRatingOpt.get();
-            existingRating.setRating(addUpdateRatingDTO.getRating());
+            existingRating.setRating(addUpdateRatingRequestDTO.getRating());
             ratingRepository.save(existingRating);
 
         } else {
 
             Rating newRating = new Rating();
-            newRating.setSenderId(addUpdateRatingDTO.getRateSender());
+            newRating.setSenderId(addUpdateRatingRequestDTO.getRateSender());
 
 
             newRating.setContractor(
-                    contractorRepository.findById(addUpdateRatingDTO.getRateReceiver())
+                    contractorRepository.findById(addUpdateRatingRequestDTO.getRateReceiver())
                             .orElseThrow(() -> new IllegalArgumentException("Contractor not found"))
             );
 
-            newRating.setRating(addUpdateRatingDTO.getRating());
+            newRating.setRating(addUpdateRatingRequestDTO.getRating());
             ratingRepository.save(newRating);
         }
     }

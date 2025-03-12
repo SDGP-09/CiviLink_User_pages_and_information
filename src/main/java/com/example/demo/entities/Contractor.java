@@ -22,7 +22,8 @@ public class Contractor {
     @OneToMany(mappedBy = "contractor")
     private List<Rating> rating;
 
-
+    @OneToMany(mappedBy = "contractor")
+    private List<Deal> deals;
 
     private String profilePicture; // URL of the contractor's profile picture
     private String availableServices;

@@ -27,7 +27,7 @@ public class Deal {
 
     private String fullDescription;
 
-    private boolean show;
+    private boolean visible;
 
     private int perHour;
 
@@ -39,13 +39,39 @@ public class Deal {
 
     private int perYear;
 
+    private int price;
+
+    @ManyToOne
+    @JoinColumn(
+            name = "Contractor_id",
+            nullable = false,
+            foreignKey = @ForeignKey(name = "fk_deal_contractor")
+    )
+    private Contractor contractor;
+
+
 
     public Deal() {
 
     }
+    public int getPrice() {
+        return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
 
     public Long getId() {
         return id;
+    }
+
+    public Contractor getContractor() {
+        return contractor;
+    }
+
+    public void setContractor(Contractor contractor) {
+        this.contractor = contractor;
     }
 
     public void setId(Long id) {
@@ -92,12 +118,12 @@ public class Deal {
         this.fullDescription = fullDescription;
     }
 
-    public boolean isShow() {
-        return show;
+    public boolean isVisible() {
+        return visible;
     }
 
-    public void setShow(boolean show) {
-        this.show = show;
+    public void setVisible(boolean show) {
+        this.visible = show;
     }
 
     public int getPerHour() {
@@ -146,23 +172,27 @@ public class Deal {
             Field fields,
             List<DealImage> images,
             String fullDescription,
-            boolean show,
+            boolean visible,
             int perHour,
             int perDay,
             int perWeek,
             int perMonth,
-            int perYear
+            int perYear,
+            int price,
+            Contractor contractor
     ) {
         this.title = title;
         this.descriptions = descriptions;
         this.fields = fields;
         this.images = images;
         this.fullDescription = fullDescription;
-        this.show = show;
+        this.visible = visible;
         this.perHour = perHour;
         this.perDay = perDay;
         this.perWeek = perWeek;
         this.perMonth = perMonth;
         this.perYear = perYear;
+        this.price = price;
+        this.contractor = contractor;
     }
 }
