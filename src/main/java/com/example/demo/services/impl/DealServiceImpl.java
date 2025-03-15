@@ -1,6 +1,6 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.dtos.request.AddRequestDTO;
+import com.example.demo.dtos.internal.postAddInternalDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.repositories.DealRepository;
 import com.example.demo.services.DealService;
@@ -15,7 +15,7 @@ public class DealServiceImpl implements DealService {
 
 
     @Override
-    public AddResponseDTO postAdd(AddRequestDTO addRequestDTO) {
+    public AddResponseDTO postAdd(postAddInternalDTO postAddInternalDTO) {
         return null;
     }
 }

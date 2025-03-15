@@ -1,6 +1,6 @@
-package com.example.demo.dtos.request;
+package com.example.demo.dtos.internal;
 
-public class IdBasedRequestDTO {
+public class IdBasedInternalDTO {
 
     private Long id;
 
@@ -13,7 +13,7 @@ public class IdBasedRequestDTO {
         this.id = id;
     }
 
-    public IdBasedRequestDTO(Long id) {
+    public IdBasedInternalDTO(Long id) {
         this.id = id;
     }
 }

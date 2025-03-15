@@ -1,9 +1,9 @@
-package com.example.demo.dtos.request;
+package com.example.demo.dtos.internal;
 
 import com.example.demo.enums.Field;
 import com.google.cloud.storage.Blob;
 
-public class AddRequestDTO {
+public class postAddInternalDTO {
     private Long OwnerId;
     private String title;
     private String description;

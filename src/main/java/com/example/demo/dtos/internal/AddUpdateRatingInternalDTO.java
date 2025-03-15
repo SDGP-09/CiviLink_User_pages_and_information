@@ -1,6 +1,6 @@
-package com.example.demo.dtos.request;
+package com.example.demo.dtos.internal;
 
-public class AddUpdateRatingRequestDTO {
+public class AddUpdateRatingInternalDTO {
     private Long rateReceiver;
     private Long rateSender;
     private int rating;
@@ -30,12 +30,12 @@ public class AddUpdateRatingRequestDTO {
         this.rating = rating;
     }
 
-    public AddUpdateRatingRequestDTO(Long rateReceiver, Long rateSender, int rating) {
+    public AddUpdateRatingInternalDTO(Long rateReceiver, Long rateSender, int rating) {
         this.rateReceiver = rateReceiver;
         this.rateSender = rateSender;
         this.rating = rating;
     }
 
-    public AddUpdateRatingRequestDTO() {
+    public AddUpdateRatingInternalDTO() {
     }
 }

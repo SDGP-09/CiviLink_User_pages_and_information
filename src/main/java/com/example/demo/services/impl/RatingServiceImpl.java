@@ -1,7 +1,7 @@
 package com.example.demo.services.impl;
 
-import com.example.demo.dtos.request.AddUpdateRatingRequestDTO;
-import com.example.demo.dtos.request.IdBasedRequestDTO;
+import com.example.demo.dtos.internal.AddUpdateRatingInternalDTO;
+import com.example.demo.dtos.internal.IdBasedInternalDTO;
 import com.example.demo.dtos.response.RatingSummeryResponseDTO;
 import com.example.demo.entities.Rating;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -26,7 +26,7 @@ public class RatingServiceImpl implements RatingService {
     private ContractorRepository contractorRepository;
 
     @Override
-    public RatingSummeryResponseDTO getRatingSummery(IdBasedRequestDTO id) {
+    public RatingSummeryResponseDTO getRatingSummery(IdBasedInternalDTO id) {
 
         try{
             List<Object[]> results = ratingRepository.findRatingCountsByContractorId(id.getId());
@@ -53,26 +53,26 @@ public class RatingServiceImpl implements RatingService {
 
     @Transactional
     @Override
-    public void addUpdateRating(AddUpdateRatingRequestDTO addUpdateRatingRequestDTO) {
-        Optional<Rating> existingRatingOpt = ratingRepository.findBySenderIdAndContractorId(addUpdateRatingRequestDTO.getRateSender(), addUpdateRatingRequestDTO.getRateReceiver());
+    public void addUpdateRating(AddUpdateRatingInternalDTO addUpdateRatingInternalDTO) {
+        Optional<Rating> existingRatingOpt = ratingRepository.findBySenderIdAndContractorId(addUpdateRatingInternalDTO.getRateSender(), addUpdateRatingInternalDTO.getRateReceiver());
         if (existingRatingOpt.isPresent()) {
 
             Rating existingRating = existingRatingOpt.get();
-            existingRating.setRating(addUpdateRatingRequestDTO.getRating());
+            existingRating.setRating(addUpdateRatingInternalDTO.getRating());
             ratingRepository.save(existingRating);
 
         } else {
 
             Rating newRating = new Rating();
-            newRating.setSenderId(addUpdateRatingRequestDTO.getRateSender());
+            newRating.setSenderId(addUpdateRatingInternalDTO.getRateSender());
 
 
             newRating.setContractor(
-                    contractorRepository.findById(addUpdateRatingRequestDTO.getRateReceiver())
+                    contractorRepository.findById(addUpdateRatingInternalDTO.getRateReceiver())
                             .orElseThrow(() -> new IllegalArgumentException("Contractor not found"))
             );
 
-            newRating.setRating(addUpdateRatingRequestDTO.getRating());
+            newRating.setRating(addUpdateRatingInternalDTO.getRating());
             ratingRepository.save(newRating);
         }
     }

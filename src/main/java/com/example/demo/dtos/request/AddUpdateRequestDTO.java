@@ -1,6 +1,6 @@
 package com.example.demo.dtos.request;
 
-public class PostAddUpdateRequestDTO {
+public class AddUpdateRequestDTO {
 
     private Long rateReceiver;
 
@@ -23,10 +23,10 @@ public class PostAddUpdateRequestDTO {
         this.rating = rating;
     }
 
-    public PostAddUpdateRequestDTO(Long rateReceiver, int rating) {
+    public AddUpdateRequestDTO(Long rateReceiver, int rating) {
         this.rateReceiver = rateReceiver;
         this.rating = rating;
     }
 
-    public PostAddUpdateRequestDTO(){}
+    public AddUpdateRequestDTO(){}
 }
