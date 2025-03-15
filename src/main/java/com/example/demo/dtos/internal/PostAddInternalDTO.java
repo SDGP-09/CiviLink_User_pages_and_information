@@ -1,16 +1,14 @@
-package com.example.demo.dtos.response;
+package com.example.demo.dtos.internal;
 
 import com.example.demo.enums.Field;
-import com.google.cloud.storage.Blob;
 import org.springframework.web.multipart.MultipartFile;
 
-public class AddResponseDTO {
-    private Long id;
-    private Long ownerId;
+public class PostAddInternalDTO {
+    private Long OwnerId;
     private String title;
     private String description;
     private Field field;
-    private String[] images;
+    private MultipartFile[] images;
     private String fullDescription;
     private boolean show;
     private Integer perHour;
@@ -18,23 +16,14 @@ public class AddResponseDTO {
     private Integer perWeek;
     private Integer perMonth;
     private Integer perYear;
-
     private Integer price;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public Long getOwnerId() {
-        return ownerId;
+        return OwnerId;
     }
 
     public void setOwnerId(Long ownerId) {
-        this.ownerId = ownerId;
+        OwnerId = ownerId;
     }
 
     public String getTitle() {
@@ -61,11 +50,11 @@ public class AddResponseDTO {
         this.field = field;
     }
 
-    public String[] getImages() {
+    public MultipartFile[] getImages() {
         return images;
     }
 
-    public void setImages(String[] images) {
+    public void setImages(MultipartFile[] images) {
         this.images = images;
     }
 
@@ -133,13 +122,12 @@ public class AddResponseDTO {
         this.price = price;
     }
 
-    public AddResponseDTO(
-            Long id,
+    public PostAddInternalDTO(
             Long ownerId,
             String title,
             String description,
             Field field,
-            String[] images,
+            MultipartFile[] images,
             String fullDescription,
             boolean show,
             Integer perHour,
@@ -149,8 +137,7 @@ public class AddResponseDTO {
             Integer perYear,
             Integer price
     ) {
-        this.id = id;
-        this.ownerId = ownerId;
+        OwnerId = ownerId;
         this.title = title;
         this.description = description;
         this.field = field;
@@ -164,6 +151,4 @@ public class AddResponseDTO {
         this.perYear = perYear;
         this.price = price;
     }
-
-    public AddResponseDTO(){}
 }

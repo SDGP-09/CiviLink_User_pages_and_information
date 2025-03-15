@@ -166,6 +166,22 @@ public class Deal {
         this.perYear = perYear;
     }
 
+
+    public Deal(String title, String descriptions, Field fields, String fullDescription, boolean visible, int perHour, int perDay, int perWeek, int perMonth, int perYear, int price, Contractor contractor) {
+        this.title = title;
+        this.descriptions = descriptions;
+        this.fields = fields;
+        this.fullDescription = fullDescription;
+        this.visible = visible;
+        this.perHour = perHour;
+        this.perDay = perDay;
+        this.perWeek = perWeek;
+        this.perMonth = perMonth;
+        this.perYear = perYear;
+        this.price = price;
+        this.contractor = contractor;
+    }
+
     public Deal(
             String title,
             String descriptions,
