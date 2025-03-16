@@ -11,5 +11,5 @@ public interface StorageService {
 
     public String generateSignedUrl(String fileName);
 
-
+    public void deleteFile(String fileName) throws IOException;
 }

@@ -2,10 +2,7 @@ package com.example.demo.services.impl;
 
 import com.example.demo.services.StorageService;
 import com.google.auth.oauth2.ServiceAccountCredentials;
-import com.google.cloud.storage.Blob;
-import com.google.cloud.storage.BlobInfo;
-import com.google.cloud.storage.Storage;
-import com.google.cloud.storage.StorageOptions;
+import com.google.cloud.storage.*;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -81,5 +78,14 @@ public class StorageServiceImpl implements StorageService {
         URL signedUrl = storage.signUrl(blobInfo, 15, TimeUnit.MINUTES);
         return signedUrl.toString();
 
+    }
+
+    @Override
+    public void deleteFile(String fileName) throws IOException {
+        BlobId blobId = BlobId.of(BUCKET_NAME, fileName);
+        boolean deleted = storage.delete(blobId);
+        if (!deleted) {
+            throw new IOException("Failed to delete file: " + fileName);
+        }
     }
 }
