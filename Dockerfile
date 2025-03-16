@@ -21,4 +21,4 @@ COPY --from=builder /app/target/user_pages.jar app.jar
 EXPOSE 7071
 
 # Run the application
-CMD ["java", "-jar", "user_pages.jar"]
+CMD ["java", "-jar", "app.jar"]
