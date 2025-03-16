@@ -1,5 +1,6 @@
 package com.example.demo.services.impl;
 
+import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
@@ -206,8 +207,55 @@ public class DealServiceImpl implements DealService {
         );
     }
 
+    @Override
+    public void toggleVisibility(AddIdBasedInternalDTO addIdBasedInternalDTO) {
+
+        Deal deal = dealRepository.findById(addIdBasedInternalDTO.getAddId())
+                .orElseThrow(() -> new ResourceNotFoundException("Deal not found with id: " + addIdBasedInternalDTO.getAddId()));
 
 
+        if (!deal.getContractor().getId().equals(addIdBasedInternalDTO.getOwnerId())) {
+            throw new RuntimeException("Unauthorized: Contractor id mismatch.");
+        }
+
+
+        deal.setVisible(!deal.isVisible());
+
+
+        dealRepository.save(deal);
+    }
+
+    @Override
+    public void deleteAdd(AddIdBasedInternalDTO addIdBasedInternalDTO) {
+
+
+        Deal deal = dealRepository.findById(addIdBasedInternalDTO.getAddId())
+                .orElseThrow(() -> new ResourceNotFoundException("Deal not found with id: " + addIdBasedInternalDTO.getAddId()));
+
+
+        if (!deal.getContractor().getId().equals(addIdBasedInternalDTO.getOwnerId())) {
+            throw new RuntimeException("Unauthorized: Contractor id mismatch.");
+        }
+
+
+        if (deal.getImages() != null) {
+            for (DealImage image : deal.getImages()) {
+                try {
+
+                    storageService.deleteFile(image.getImage());
+                } catch (IOException e) {
+
+                    throw new RuntimeException("Failed to delete image: " + image.getImage(), e);
+                }
+            }
+        }
+
+
+        dealRepository.delete(deal);
+
+
+
+    }
 
 
 }

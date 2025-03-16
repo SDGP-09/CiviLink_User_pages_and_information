@@ -1,20 +1,20 @@
 package com.example.demo.controllers;
 
 
+import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
+import com.example.demo.dtos.request.AddIdBasedRequestDTO;
 import com.example.demo.dtos.request.PostAddRequestDTO;
 import com.example.demo.dtos.request.UpdateAddRequestDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.services.DealService;
 import com.example.demo.util.StandardResponse;
+import com.google.rpc.context.AttributeContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 
@@ -68,6 +68,7 @@ public class DealController {
     }
 
 
+    @PutMapping("/update-deal")
     public ResponseEntity<StandardResponse> updateDeal(@RequestBody UpdateAddRequestDTO updateAddRequestDTO, Authentication authentication){
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
@@ -96,6 +97,46 @@ public class DealController {
 
         return new ResponseEntity<>(
                 new StandardResponse(200, "Rating Posted", response),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/hideShow")
+    public ResponseEntity<StandardResponse> toggleVisibility(@RequestBody AddIdBasedRequestDTO addIdBasedRequestDTO, Authentication authentication){
+
+        Jwt jwt =(Jwt) authentication.getPrincipal();
+
+
+        String senderIdClaim = jwt.getClaimAsString("sub");
+        Long senderId = Long.valueOf(senderIdClaim);
+
+        dealService.toggleVisibility(new AddIdBasedInternalDTO(
+                addIdBasedRequestDTO.getAddId(),
+                senderId
+        ));
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "Rating Posted", true),
+                HttpStatus.OK
+        );
+    }
+
+    @DeleteMapping("/deleteAdd")
+    public ResponseEntity<StandardResponse> deleteDeal(@RequestBody AddIdBasedRequestDTO addIdBasedRequestDTO, Authentication authentication){
+
+        Jwt jwt =(Jwt) authentication.getPrincipal();
+
+
+        String senderIdClaim = jwt.getClaimAsString("sub");
+        Long senderId = Long.valueOf(senderIdClaim);
+
+        dealService.deleteAdd(new AddIdBasedInternalDTO(
+                addIdBasedRequestDTO.getAddId(),
+                senderId
+        ));
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "Rating Posted", true),
                 HttpStatus.OK
         );
     }
