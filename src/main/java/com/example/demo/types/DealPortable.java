@@ -1,14 +1,15 @@
-package com.example.demo.dtos.internal;
+package com.example.demo.types;
 
 import com.example.demo.enums.DealField;
-import org.springframework.web.multipart.MultipartFile;
 
-public class PostAddInternalDTO {
-    private Long OwnerId;
+public class DealPortable {
+
+    private Long id;
+    private Long ownerId;
     private String title;
     private String description;
     private DealField dealField;
-    private MultipartFile[] images;
+    private String[] imageLinks;
     private String fullDescription;
     private boolean show;
     private Integer perHour;
@@ -18,12 +19,20 @@ public class PostAddInternalDTO {
     private Integer perYear;
     private Integer price;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Long getOwnerId() {
-        return OwnerId;
+        return ownerId;
     }
 
     public void setOwnerId(Long ownerId) {
-        OwnerId = ownerId;
+        this.ownerId = ownerId;
     }
 
     public String getTitle() {
@@ -50,12 +59,12 @@ public class PostAddInternalDTO {
         this.dealField = dealField;
     }
 
-    public MultipartFile[] getImages() {
-        return images;
+    public String[] getImageLinks() {
+        return imageLinks;
     }
 
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
+    public void setImageLinks(String[] imageLinks) {
+        this.imageLinks = imageLinks;
     }
 
     public String getFullDescription() {
@@ -122,12 +131,14 @@ public class PostAddInternalDTO {
         this.price = price;
     }
 
-    public PostAddInternalDTO(
+
+    public DealPortable(
+            Long id,
             Long ownerId,
             String title,
             String description,
             DealField dealField,
-            MultipartFile[] images,
+            String[] imageLinks,
             String fullDescription,
             boolean show,
             Integer perHour,
@@ -137,11 +148,12 @@ public class PostAddInternalDTO {
             Integer perYear,
             Integer price
     ) {
-        OwnerId = ownerId;
+        this.id = id;
+        this.ownerId = ownerId;
         this.title = title;
         this.description = description;
         this.dealField = dealField;
-        this.images = images;
+        this.imageLinks = imageLinks;
         this.fullDescription = fullDescription;
         this.show = show;
         this.perHour = perHour;
@@ -151,4 +163,9 @@ public class PostAddInternalDTO {
         this.perYear = perYear;
         this.price = price;
     }
+
+
+
+
+    public DealPortable(){}
 }

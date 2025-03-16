@@ -1,6 +1,6 @@
 package com.example.demo.dtos.internal;
 
-import com.example.demo.enums.Field;
+import com.example.demo.enums.DealField;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UpdateAddInternalDTO {
@@ -9,7 +9,7 @@ public class UpdateAddInternalDTO {
     private Long OwnerId;
     private String title;
     private String description;
-    private Field field;
+    private DealField dealField;
     private String[] deletedImages;
     private MultipartFile[] images;
     private String fullDescription;
@@ -54,12 +54,12 @@ public class UpdateAddInternalDTO {
         this.description = description;
     }
 
-    public Field getField() {
-        return field;
+    public DealField getField() {
+        return dealField;
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public void setField(DealField dealField) {
+        this.dealField = dealField;
     }
 
     public String[] getDeletedImages() {
@@ -146,7 +146,7 @@ public class UpdateAddInternalDTO {
                                 Long ownerId,
                                 String title,
                                 String description,
-                                Field field,
+                                DealField dealField,
                                 String[] deletedImages,
                                 MultipartFile[] images,
                                 String fullDescription,
@@ -161,7 +161,7 @@ public class UpdateAddInternalDTO {
         OwnerId = ownerId;
         this.title = title;
         this.description = description;
-        this.field = field;
+        this.dealField = dealField;
         this.deletedImages = deletedImages;
         this.images = images;
         this.fullDescription = fullDescription;

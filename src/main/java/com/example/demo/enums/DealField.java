@@ -1,6 +1,6 @@
 package com.example.demo.enums;
 
-public enum Field {
+public enum DealField {
     Other,
     Logistics,
     Power,

@@ -1,5 +1,6 @@
 package com.example.demo.entities;
 
+import com.example.demo.enums.ContractorField;
 import jakarta.persistence.*;
 
 import java.util.List;
@@ -26,19 +27,24 @@ public class Contractor {
     private List<Deal> deals;
 
     private String profilePicture; // URL of the contractor's profile picture
-    private String availableServices;
+
+    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
+    private ContractorField field;
 
     // Constructors
     public Contractor() {}
 
-    public Contractor(String name, String location, String companyName, Double rating, String profilePicture, String availableServices) {
+    public Contractor(Long id, String name, String location, String companyName, ContractorField field) {
+        this.id = id;
         this.name = name;
         this.location = location;
         this.companyName = companyName;
-//        this.rating = rating
-        this.profilePicture = profilePicture;
-        this.availableServices = availableServices;
+        this.field = field;
     }
+
+    
+
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -54,6 +60,6 @@ public class Contractor {
     public String getProfilePicture() { return profilePicture; }
     public void setProfilePicture(String profilePicture) { this.profilePicture = profilePicture; }
 
-    public String getAvailableServices() { return availableServices; }
-    public void setAvailableServices(String availableServices) { this.availableServices = availableServices; }
+    public ContractorField getField() { return field; }
+    public void setField(ContractorField availableServices) { this.field = availableServices; }
 }

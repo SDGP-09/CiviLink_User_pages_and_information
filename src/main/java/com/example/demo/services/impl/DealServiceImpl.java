@@ -4,6 +4,7 @@ import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
+import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.entities.Contractor;
 import com.example.demo.entities.Deal;
 import com.example.demo.entities.DealImage;
@@ -12,6 +13,7 @@ import com.example.demo.repositories.ContractorRepository;
 import com.example.demo.repositories.DealRepository;
 import com.example.demo.services.DealService;
 import com.example.demo.services.StorageService;
+import com.example.demo.types.DealPortable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -255,6 +257,49 @@ public class DealServiceImpl implements DealService {
 
 
 
+    }
+
+    public AllDealsResponseDTO getDealsByContractorId(Long contractorId) {
+        // Verify the contractor exists.
+        Contractor contractor = contractorRepository.findById(contractorId)
+                .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + contractorId));
+
+        // Retrieve deals associated with this contractor.
+        List<Deal> deals = dealRepository.findByContractorId(contractorId);
+        List<DealPortable> dtoList = new ArrayList<>();
+
+        // Map each Deal entity to a DealResponseDTO.
+        for (Deal deal : deals) {
+            // Collect image names from DealImage entities.
+            List<String> imageNames = new ArrayList<>();
+            if (deal.getImages() != null) {
+                for (DealImage di : deal.getImages()) {
+                    imageNames.add(di.getImage());
+                }
+            }
+            // Map the deal fields to DTO.
+            DealPortable dto = new DealPortable(
+                    deal.getId(),
+                    deal.getContractor().getId(),
+                    deal.getTitle(),
+                    deal.getDescriptions(),
+                    deal.getFields(),
+                    imageNames.toArray(new String[0]),
+                    deal.getFullDescription(),
+                    deal.isVisible(),
+                    deal.getPerHour(),
+                    deal.getPerDay(),
+                    deal.getPerWeek(),
+                    deal.getPerMonth(),
+                    deal.getPerYear(),
+                    deal.getPrice()
+            );
+            dtoList.add(dto);
+        }
+
+        // Convert the list to an array and wrap in DealsResponseDTO.
+        DealPortable[] dtoArray = dtoList.toArray(new DealPortable[0]);
+        return new AllDealsResponseDTO(dtoArray);
     }
 
 

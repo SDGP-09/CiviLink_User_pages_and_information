@@ -1,6 +1,6 @@
 package com.example.demo.dtos.request;
 
-import com.example.demo.enums.Field;
+import com.example.demo.enums.DealField;
 import org.springframework.web.multipart.MultipartFile;
 
 public class UpdateAddRequestDTO {
@@ -8,7 +8,7 @@ public class UpdateAddRequestDTO {
     private Long id;
     private String title;
     private String description;
-    private Field field;
+    private DealField dealField;
     private String[] deletedImages;
     private MultipartFile[] images;
     private String fullDescription;
@@ -45,12 +45,12 @@ public class UpdateAddRequestDTO {
         this.description = description;
     }
 
-    public Field getField() {
-        return field;
+    public DealField getField() {
+        return dealField;
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public void setField(DealField dealField) {
+        this.dealField = dealField;
     }
 
     public String[] getDeletedImages() {
@@ -138,7 +138,7 @@ public class UpdateAddRequestDTO {
             Long id,
             String title,
             String description,
-            Field field,
+            DealField dealField,
             String[] deletedImages,
             MultipartFile[] images,
             String fullDescription,
@@ -153,7 +153,7 @@ public class UpdateAddRequestDTO {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.field = field;
+        this.dealField = dealField;
         this.deletedImages = deletedImages;
         this.images = images;
         this.fullDescription = fullDescription;

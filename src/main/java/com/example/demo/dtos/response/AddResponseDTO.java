@@ -1,15 +1,13 @@
 package com.example.demo.dtos.response;
 
-import com.example.demo.enums.Field;
-import com.google.cloud.storage.Blob;
-import org.springframework.web.multipart.MultipartFile;
+import com.example.demo.enums.DealField;
 
 public class AddResponseDTO {
     private Long id;
     private Long ownerId;
     private String title;
     private String description;
-    private Field field;
+    private DealField dealField;
     private String[] images;
     private String fullDescription;
     private boolean show;
@@ -53,12 +51,12 @@ public class AddResponseDTO {
         this.description = description;
     }
 
-    public Field getField() {
-        return field;
+    public DealField getField() {
+        return dealField;
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public void setField(DealField dealField) {
+        this.dealField = dealField;
     }
 
     public String[] getImages() {
@@ -138,7 +136,7 @@ public class AddResponseDTO {
             Long ownerId,
             String title,
             String description,
-            Field field,
+            DealField dealField,
             String[] images,
             String fullDescription,
             boolean show,
@@ -153,7 +151,7 @@ public class AddResponseDTO {
         this.ownerId = ownerId;
         this.title = title;
         this.description = description;
-        this.field = field;
+        this.dealField = dealField;
         this.images = images;
         this.fullDescription = fullDescription;
         this.show = show;

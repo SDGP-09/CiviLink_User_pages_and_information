@@ -1,7 +1,7 @@
 package com.example.demo.entities;
 
 
-import com.example.demo.enums.Field;
+import com.example.demo.enums.DealField;
 import jakarta.persistence.*;
 import java.util.List;
 
@@ -20,7 +20,7 @@ public class Deal {
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING)
-    private Field fields;
+    private DealField fields;
 
     @OneToMany(mappedBy = "deal")
     private List<DealImage> images;
@@ -94,11 +94,11 @@ public class Deal {
         this.descriptions = descriptions;
     }
 
-    public Field getFields() {
+    public DealField getFields() {
         return fields;
     }
 
-    public void setFields(Field fields) {
+    public void setFields(DealField fields) {
         this.fields = fields;
     }
 
@@ -167,7 +167,7 @@ public class Deal {
     }
 
 
-    public Deal(String title, String descriptions, Field fields, String fullDescription, boolean visible, int perHour, int perDay, int perWeek, int perMonth, int perYear, int price, Contractor contractor) {
+    public Deal(String title, String descriptions, DealField fields, String fullDescription, boolean visible, int perHour, int perDay, int perWeek, int perMonth, int perYear, int price, Contractor contractor) {
         this.title = title;
         this.descriptions = descriptions;
         this.fields = fields;
@@ -185,7 +185,7 @@ public class Deal {
     public Deal(
             String title,
             String descriptions,
-            Field fields,
+            DealField fields,
             List<DealImage> images,
             String fullDescription,
             boolean visible,

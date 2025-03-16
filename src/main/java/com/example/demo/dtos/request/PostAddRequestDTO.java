@@ -1,14 +1,13 @@
 package com.example.demo.dtos.request;
 
-import com.example.demo.enums.Field;
-import com.google.cloud.storage.Blob;
+import com.example.demo.enums.DealField;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PostAddRequestDTO {
 
     private String title;
     private String description;
-    private Field field;
+    private DealField dealField;
     private MultipartFile[] images;
     private String fullDescription;
     private boolean show;
@@ -35,12 +34,12 @@ public class PostAddRequestDTO {
         this.description = description;
     }
 
-    public Field getField() {
-        return field;
+    public DealField getField() {
+        return dealField;
     }
 
-    public void setField(Field field) {
-        this.field = field;
+    public void setField(DealField dealField) {
+        this.dealField = dealField;
     }
 
     public MultipartFile[] getImages() {
@@ -117,7 +116,7 @@ public class PostAddRequestDTO {
 
     public PostAddRequestDTO(String title,
                              String description,
-                             Field field,
+                             DealField dealField,
                              MultipartFile[] images,
                              String fullDescription,
                              boolean show,
@@ -130,7 +129,7 @@ public class PostAddRequestDTO {
     ) {
         this.title = title;
         this.description = description;
-        this.field = field;
+        this.dealField = dealField;
         this.images = images;
         this.fullDescription = fullDescription;
         this.show = show;
