@@ -18,7 +18,7 @@ WORKDIR /app
 COPY --from=builder /app/target/user_pages.jar app.jar
 
 # Expose application port
-EXPOSE 7071
+EXPOSE 3535
 
 # Run the application
 CMD ["java", "-jar", "app.jar"]
