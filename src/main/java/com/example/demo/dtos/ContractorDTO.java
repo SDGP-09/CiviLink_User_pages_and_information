@@ -1,6 +1,5 @@
 package com.example.demo.dtos;
 
-import lombok.Data;
 
 public class ContractorDTO {
     private String name;
