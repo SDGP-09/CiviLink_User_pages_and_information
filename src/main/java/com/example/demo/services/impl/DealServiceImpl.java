@@ -3,6 +3,7 @@ package com.example.demo.services.impl;
 import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
+import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.entities.Contractor;
@@ -259,25 +260,26 @@ public class DealServiceImpl implements DealService {
 
     }
 
-    public AllDealsResponseDTO getDealsByContractorId(Long contractorId) {
-        // Verify the contractor exists.
-        Contractor contractor = contractorRepository.findById(contractorId)
-                .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + contractorId));
+    @Override
+    public AllDealsResponseDTO getDealsByContractorId(IdBasedRequestDTO idBasedRequestDTO) {
 
-        // Retrieve deals associated with this contractor.
-        List<Deal> deals = dealRepository.findByContractorId(contractorId);
+        contractorRepository.findById(idBasedRequestDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + idBasedRequestDTO.getId()));
+
+
+        List<Deal> deals = dealRepository.findByContractorId(idBasedRequestDTO.getId());
         List<DealPortable> dtoList = new ArrayList<>();
 
-        // Map each Deal entity to a DealResponseDTO.
+
         for (Deal deal : deals) {
-            // Collect image names from DealImage entities.
+
             List<String> imageNames = new ArrayList<>();
             if (deal.getImages() != null) {
                 for (DealImage di : deal.getImages()) {
                     imageNames.add(di.getImage());
                 }
             }
-            // Map the deal fields to DTO.
+
             DealPortable dto = new DealPortable(
                     deal.getId(),
                     deal.getContractor().getId(),
@@ -297,7 +299,7 @@ public class DealServiceImpl implements DealService {
             dtoList.add(dto);
         }
 
-        // Convert the list to an array and wrap in DealsResponseDTO.
+
         DealPortable[] dtoArray = dtoList.toArray(new DealPortable[0]);
         return new AllDealsResponseDTO(dtoArray);
     }

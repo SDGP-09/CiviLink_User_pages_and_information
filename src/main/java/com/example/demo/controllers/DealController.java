@@ -5,9 +5,11 @@ import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
 import com.example.demo.dtos.request.AddIdBasedRequestDTO;
+import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.request.PostAddRequestDTO;
 import com.example.demo.dtos.request.UpdateAddRequestDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
+import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.services.DealService;
 import com.example.demo.util.StandardResponse;
 import com.google.rpc.context.AttributeContext;
@@ -137,6 +139,18 @@ public class DealController {
 
         return new ResponseEntity<>(
                 new StandardResponse(200, "Rating Posted", true),
+                HttpStatus.OK
+        );
+    }
+
+    @PostMapping("/get-all-deals")
+    public ResponseEntity<StandardResponse> getAllDeals(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
+
+
+        AllDealsResponseDTO deals = dealService.getDealsByContractorId(idBasedRequestDTO);
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "Rating Posted", deals),
                 HttpStatus.OK
         );
     }
