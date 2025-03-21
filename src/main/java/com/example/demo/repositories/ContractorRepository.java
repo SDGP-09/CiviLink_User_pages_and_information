@@ -8,5 +8,7 @@ import java.util.List;
 @Repository
 public interface ContractorRepository extends JpaRepository<Contractor, Long> {
     List<Contractor> findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(String name, String location);
+
+    List<Contractor> findByNameContainingIgnoreCase(String name);
 }
 

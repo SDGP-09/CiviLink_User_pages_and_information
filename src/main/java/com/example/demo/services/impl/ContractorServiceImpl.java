@@ -1,7 +1,11 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.request.NameBasedRequestDTO;
+import com.example.demo.dtos.request.PageBasedRequestDTO;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
+import com.example.demo.dtos.response.ContractorCardResponseDTO;
+import com.example.demo.dtos.response.ContractorNameAndPicResponseDTO;
 import com.example.demo.entities.Contractor;
 import com.example.demo.entities.Deal;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -9,8 +13,14 @@ import com.example.demo.repositories.ContractorRepository;
 import com.example.demo.repositories.DealRepository;
 import com.example.demo.repositories.RatingRepository;
 import com.example.demo.services.ContractorService;
+import com.example.demo.types.ContractorCard;
+import com.example.demo.types.ContractorNameAndPicture;
 import com.example.demo.types.MiniDealPortable;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import com.example.demo.dtos.ContractorDTO;
 
@@ -111,6 +121,113 @@ public class ContractorServiceImpl implements ContractorService {
                 ratingMap,
                 hotDeals
         );
+    }
+
+    @Override
+    public ContractorNameAndPicResponseDTO searchContractorsByName(NameBasedRequestDTO nameBasedRequestDTO) {
+
+        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCase(nameBasedRequestDTO.getName());
+
+
+        List<ContractorNameAndPicture> list = new ArrayList<>();
+        for (Contractor c : contractors) {
+            list.add(new ContractorNameAndPicture(c.getId(), c.getName(), c.getProfilePicture()));
+        }
+
+
+        ContractorNameAndPicture[] arr = list.toArray(new ContractorNameAndPicture[0]);
+
+
+        return new ContractorNameAndPicResponseDTO(arr);
+    }
+
+    @Override
+    public ContractorCardResponseDTO searchContractorCardsByName(NameBasedRequestDTO nameBasedRequestDTO) {
+
+        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCase(nameBasedRequestDTO.getName());
+
+        if (contractors == null || contractors.isEmpty()) {
+            throw new ResourceNotFoundException("No contractor found matching: " + nameBasedRequestDTO.getName());
+        }
+
+        List<ContractorCard> cardList = new ArrayList<>();
+
+
+        for (Contractor contractor : contractors) {
+
+            List<Object[]> ratingResults = ratingRepository.findRatingCountsByContractorId(contractor.getId());
+            int totalRatings = 0;
+            int totalPoints = 0;
+            for (Object[] row : ratingResults) {
+                int ratingValue = (int) row[0];
+                long count = (long) row[1];
+                totalRatings += count;
+                totalPoints += ratingValue * count;
+            }
+
+            int avgRating = totalRatings > 0 ? (int) Math.round((double) totalPoints / totalRatings) : 0;
+
+            ContractorCard card = new ContractorCard(
+                    contractor.getId(),
+                    contractor.getName(),
+                    avgRating,
+                    contractor.getProfilePicture()
+            );
+            cardList.add(card);
+        }
+
+
+        ContractorCard[] cardsArray = cardList.toArray(new ContractorCard[0]);
+        return new ContractorCardResponseDTO(cardsArray);
+    }
+
+
+    @Override
+    public ContractorCardResponseDTO getContractorsByPage(PageBasedRequestDTO pageBasedRequestDTO) {
+
+        if (pageBasedRequestDTO.getPageNumber() < 1) {
+            throw new IllegalArgumentException("Page number must be 1 or greater.");
+        }
+
+
+        Pageable pageable = PageRequest.of(pageBasedRequestDTO.getPageNumber() - 1, 50, Sort.by("id").ascending());
+
+
+        Page<Contractor> page = contractorRepository.findAll(pageable);
+
+        if (page.isEmpty()) {
+            throw new ResourceNotFoundException("No contractors found for page: " + pageBasedRequestDTO.getPageNumber());
+        }
+
+        List<ContractorCard> cardList = new ArrayList<>();
+
+
+        for (Contractor contractor : page.getContent()) {
+
+            List<Object[]> ratingResults = ratingRepository.findRatingCountsByContractorId(contractor.getId());
+            int totalRatings = 0;
+            int totalPoints = 0;
+            for (Object[] row : ratingResults) {
+                int ratingValue = (int) row[0];
+                long count = (long) row[1];
+                totalRatings += count;
+                totalPoints += ratingValue * count;
+            }
+            int avgRating = totalRatings > 0 ? (int) Math.round((double) totalPoints / totalRatings) : 0;
+
+
+            ContractorCard card = new ContractorCard(
+                    contractor.getId(),
+                    contractor.getName(),
+                    avgRating,
+                    contractor.getProfilePicture()
+            );
+            cardList.add(card);
+        }
+
+
+        ContractorCard[] cardsArray = cardList.toArray(new ContractorCard[0]);
+        return new ContractorCardResponseDTO(cardsArray);
     }
 
 }
