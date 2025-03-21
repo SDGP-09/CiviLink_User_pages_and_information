@@ -8,6 +8,7 @@ import com.example.demo.dtos.response.ContractorCardResponseDTO;
 import com.example.demo.dtos.response.ContractorNameAndPicResponseDTO;
 import com.example.demo.entities.Contractor;
 import com.example.demo.entities.Deal;
+import com.example.demo.entities.Project;
 import com.example.demo.exception.ResourceNotFoundException;
 import com.example.demo.repositories.ContractorRepository;
 import com.example.demo.repositories.DealRepository;
@@ -16,6 +17,7 @@ import com.example.demo.services.ContractorService;
 import com.example.demo.types.ContractorCard;
 import com.example.demo.types.ContractorNameAndPicture;
 import com.example.demo.types.MiniDealPortable;
+import com.example.demo.types.ProjectTitleAndImage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -83,35 +85,57 @@ public class ContractorServiceImpl implements ContractorService {
             long count = (long) row[1];
             ratingMap.put(ratingValue, (int) count);
         }
-
-         for (int i = 1; i <= 5; i++) {
-             ratingMap.putIfAbsent(i, 0);
-         }
+        for (int i = 1; i <= 5; i++) {
+            ratingMap.putIfAbsent(i, 0);
+        }
 
 
         List<Deal> deals = dealRepository.findByContractorId(internalDTO.getId());
         List<MiniDealPortable> miniDealList = new ArrayList<>();
-
         for (Deal deal : deals) {
-
-            String firstImage = null;
-            if (deal.getImages() != null && !deal.getImages().isEmpty()) {
-                firstImage = deal.getImages().get(0).getImage();
+            if (deal.isVisible()) {
+                String firstImage = null;
+                if (deal.getImages() != null && !deal.getImages().isEmpty()) {
+                    firstImage = deal.getImages().get(0).getImage();
+                }
+                MiniDealPortable miniDeal = new MiniDealPortable(
+                        deal.getId(),
+                        deal.getTitle(),
+                        deal.getDescriptions(),
+                        firstImage
+                );
+                miniDealList.add(miniDeal);
             }
-
-
-            MiniDealPortable miniDeal = new MiniDealPortable(
-                    deal.getId(),
-                    deal.getTitle(),
-                    deal.getDescriptions(),
-                    firstImage
-            );
-            miniDealList.add(miniDeal);
         }
-
         MiniDealPortable[] hotDeals = miniDealList.toArray(new MiniDealPortable[0]);
 
 
+        List<Project> projects = contractor.getProjects();
+        List<ProjectTitleAndImage> onGoingList = new ArrayList<>();
+        List<ProjectTitleAndImage> completedList = new ArrayList<>();
+        if (projects != null) {
+            for (Project project : projects) {
+                if (project.isVisible()) {
+                    String firstProjectImage = null;
+                    if (project.getImages() != null && !project.getImages().isEmpty()) {
+                        firstProjectImage = project.getImages().get(0).getImage();
+                    }
+                    ProjectTitleAndImage projectCard = new ProjectTitleAndImage(
+                            project.getId(),
+                            project.getName(),
+                            firstProjectImage
+                    );
+
+                    if (project.getStatus().toString().equalsIgnoreCase("Completed")) {
+                        completedList.add(projectCard);
+                    } else {
+                        onGoingList.add(projectCard);
+                    }
+                }
+            }
+        }
+        ProjectTitleAndImage[] onGoingProjects = onGoingList.toArray(new ProjectTitleAndImage[0]);
+        ProjectTitleAndImage[] completedProjects = completedList.toArray(new ProjectTitleAndImage[0]);
 
 
         return new CompanyDetailsResponseDTO(
@@ -119,7 +143,9 @@ public class ContractorServiceImpl implements ContractorService {
                 contractor.getLocation(),
                 contractor.getProfilePicture(),
                 ratingMap,
-                hotDeals
+                hotDeals,
+                onGoingProjects,
+                completedProjects
         );
     }
 

@@ -32,6 +32,9 @@ public class Contractor {
     @Enumerated(EnumType.STRING)
     private ContractorField field;
 
+    @OneToMany(mappedBy = "contractor")
+    private List<Project> projects;
+
     // Constructors
     public Contractor() {}
 
@@ -43,8 +46,28 @@ public class Contractor {
         this.field = field;
     }
 
-    
+    public Contractor(
+            Long id,
+            String name,
+            String location,
+            String companyName,
+            List<Rating> rating,
+            List<Deal> deals,
+            String profilePicture,
+            ContractorField field,
+            List<Project> projects
+    ) {
 
+        this.id = id;
+        this.name = name;
+        this.location = location;
+        this.companyName = companyName;
+        this.rating = rating;
+        this.deals = deals;
+        this.profilePicture = profilePicture;
+        this.field = field;
+        this.projects = projects;
+    }
 
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
@@ -62,4 +85,28 @@ public class Contractor {
 
     public ContractorField getField() { return field; }
     public void setField(ContractorField availableServices) { this.field = availableServices; }
+
+    public List<Rating> getRating() {
+        return rating;
+    }
+
+    public void setRating(List<Rating> rating) {
+        this.rating = rating;
+    }
+
+    public List<Deal> getDeals() {
+        return deals;
+    }
+
+    public void setDeals(List<Deal> deals) {
+        this.deals = deals;
+    }
+
+    public List<Project> getProjects() {
+        return projects;
+    }
+
+    public void setProjects(List<Project> projects) {
+        this.projects = projects;
+    }
 }
