@@ -1,32 +1,25 @@
-package com.example.demo.types;
+package com.example.demo.dtos.request;
 
 import com.example.demo.enums.ProjectStatus;
+import org.springframework.web.multipart.MultipartFile;
 
-public class ProjectCard {
-    private Long id;
-    private Long contractorId;
+public class PostProjectRequestDTO {
+
+
+    private String name;
     private String description;
     private String startDate;
-    private String completion;
+    private String estimatedCompletion;
     private boolean visible;
-    private String[] images;
+    private MultipartFile[] images;
     private ProjectStatus status;
 
-
-    public Long getId() {
-        return id;
+    public String getName() {
+        return name;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getContractorId() {
-        return contractorId;
-    }
-
-    public void setContractorId(Long contractorId) {
-        this.contractorId = contractorId;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getDescription() {
@@ -45,12 +38,12 @@ public class ProjectCard {
         this.startDate = startDate;
     }
 
-    public String getCompletion() {
-        return completion;
+    public String getEstimatedCompletion() {
+        return estimatedCompletion;
     }
 
-    public void setCompletion(String completion) {
-        this.completion = completion;
+    public void setEstimatedCompletion(String estimatedCompletion) {
+        this.estimatedCompletion = estimatedCompletion;
     }
 
     public boolean isVisible() {
@@ -61,11 +54,11 @@ public class ProjectCard {
         this.visible = visible;
     }
 
-    public String[] getImages() {
+    public MultipartFile[] getImages() {
         return images;
     }
 
-    public void setImages(String[] images) {
+    public void setImages(MultipartFile[] images) {
         this.images = images;
     }
 
@@ -77,25 +70,24 @@ public class ProjectCard {
         this.status = status;
     }
 
-    public ProjectCard(
-            Long id,
-            Long contractorId,
+    public PostProjectRequestDTO(
+            String name,
             String description,
             String startDate,
-            String completion,
+            String estimatedCompletion,
             boolean visible,
-            String[] images,
+            MultipartFile[] images,
             ProjectStatus status
     ) {
-        this.id = id;
-        this.contractorId = contractorId;
+        this.name = name;
         this.description = description;
         this.startDate = startDate;
-        this.completion = completion;
+        this.estimatedCompletion = estimatedCompletion;
         this.visible = visible;
         this.images = images;
         this.status = status;
     }
 
-    public ProjectCard(){}
+
+    public PostProjectRequestDTO(){}
 }

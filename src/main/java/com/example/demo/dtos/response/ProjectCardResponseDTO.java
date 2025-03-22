@@ -1,8 +1,8 @@
-package com.example.demo.types;
+package com.example.demo.dtos.response;
 
 import com.example.demo.enums.ProjectStatus;
 
-public class ProjectCard {
+public class ProjectCardResponseDTO {
     private Long id;
     private Long contractorId;
     private String description;
@@ -11,6 +11,7 @@ public class ProjectCard {
     private boolean visible;
     private String[] images;
     private ProjectStatus status;
+
 
 
     public Long getId() {
@@ -77,7 +78,7 @@ public class ProjectCard {
         this.status = status;
     }
 
-    public ProjectCard(
+    public ProjectCardResponseDTO(
             Long id,
             Long contractorId,
             String description,
@@ -97,5 +98,6 @@ public class ProjectCard {
         this.status = status;
     }
 
-    public ProjectCard(){}
+    public ProjectCardResponseDTO(){}
+
 }

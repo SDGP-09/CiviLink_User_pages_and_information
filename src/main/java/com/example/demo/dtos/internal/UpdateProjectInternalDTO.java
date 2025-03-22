@@ -1,15 +1,19 @@
-package com.example.demo.types;
+package com.example.demo.dtos.internal;
 
 import com.example.demo.enums.ProjectStatus;
+import org.springframework.web.multipart.MultipartFile;
 
-public class ProjectCard {
+public class UpdateProjectInternalDTO {
+
     private Long id;
     private Long contractorId;
+    private String name;
     private String description;
     private String startDate;
-    private String completion;
+    private String estimatedCompletion;
     private boolean visible;
-    private String[] images;
+    private String[] deletedImages;
+    private MultipartFile[] images;
     private ProjectStatus status;
 
 
@@ -29,6 +33,14 @@ public class ProjectCard {
         this.contractorId = contractorId;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getDescription() {
         return description;
     }
@@ -45,12 +57,12 @@ public class ProjectCard {
         this.startDate = startDate;
     }
 
-    public String getCompletion() {
-        return completion;
+    public String getEstimatedCompletion() {
+        return estimatedCompletion;
     }
 
-    public void setCompletion(String completion) {
-        this.completion = completion;
+    public void setEstimatedCompletion(String estimatedCompletion) {
+        this.estimatedCompletion = estimatedCompletion;
     }
 
     public boolean isVisible() {
@@ -61,11 +73,21 @@ public class ProjectCard {
         this.visible = visible;
     }
 
-    public String[] getImages() {
+    public String[] getDeletedImages() {
+        return deletedImages;
+    }
+
+    public void setDeletedImages(String[] deletedImages) {
+        this.deletedImages = deletedImages;
+    }
+
+    public MultipartFile[] getImages() {
         return images;
     }
 
-    public void setImages(String[] images) {
+
+
+    public void setImages(MultipartFile[] images) {
         this.images = images;
     }
 
@@ -77,25 +99,29 @@ public class ProjectCard {
         this.status = status;
     }
 
-    public ProjectCard(
+    public UpdateProjectInternalDTO(
             Long id,
             Long contractorId,
+            String name,
             String description,
             String startDate,
-            String completion,
+            String estimatedCompletion,
             boolean visible,
-            String[] images,
+            String[] deletedImages,
+            MultipartFile[] images,
             ProjectStatus status
     ) {
         this.id = id;
         this.contractorId = contractorId;
+        this.name = name;
         this.description = description;
         this.startDate = startDate;
-        this.completion = completion;
+        this.estimatedCompletion = estimatedCompletion;
         this.visible = visible;
+        this.deletedImages = deletedImages;
         this.images = images;
         this.status = status;
     }
 
-    public ProjectCard(){}
+    public UpdateProjectInternalDTO(){}
 }
