@@ -8,6 +8,7 @@ import com.example.demo.dtos.request.PostProjectRequestDTO;
 import com.example.demo.dtos.request.UpdateProjectRequestDTO;
 import com.example.demo.dtos.response.ProjectCardResponseDTO;
 import com.example.demo.dtos.response.ProjectDetailsResponseDTO;
+import com.example.demo.dtos.response.UnitProjectCardResponseDTO;
 import com.example.demo.services.ProjectService;
 import com.example.demo.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,6 +39,25 @@ public class ProjectController {
                 HttpStatus.OK
         );
     }
+
+    public ResponseEntity<StandardResponse> getProject(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
+
+        UnitProjectCardResponseDTO project = projectService.getUnitProjectById(idBasedRequestDTO);
+
+
+
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "contractor cards", project),
+                HttpStatus.OK
+        );
+    }
+
+
+
+
+
+
     @GetMapping("/get-all-projects")
     public ResponseEntity<StandardResponse> getAllProjects(Authentication authentication){
 

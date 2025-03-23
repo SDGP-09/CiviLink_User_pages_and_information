@@ -7,6 +7,7 @@ import com.example.demo.dtos.internal.UpdateProjectInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.response.ProjectCardResponseDTO;
 import com.example.demo.dtos.response.ProjectDetailsResponseDTO;
+import com.example.demo.dtos.response.UnitProjectCardResponseDTO;
 
 public interface ProjectService {
 
@@ -21,4 +22,6 @@ public interface ProjectService {
     public void toggleProjectVisibility(ProjectIdBasedInternalDTO projectIdBasedInternalDTO);
 
     public void deleteProject(ProjectIdBasedInternalDTO projectIdBasedInternalDTO);
+
+    public UnitProjectCardResponseDTO getUnitProjectById(IdBasedRequestDTO idBasedRequestDTO);
 }

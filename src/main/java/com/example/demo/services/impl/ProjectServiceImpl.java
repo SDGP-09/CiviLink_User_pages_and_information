@@ -7,6 +7,7 @@ import com.example.demo.dtos.internal.UpdateProjectInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.response.ProjectCardResponseDTO;
 import com.example.demo.dtos.response.ProjectDetailsResponseDTO;
+import com.example.demo.dtos.response.UnitProjectCardResponseDTO;
 import com.example.demo.entities.Contractor;
 import com.example.demo.entities.Project;
 import com.example.demo.entities.ProjectImage;
@@ -145,6 +146,37 @@ public class ProjectServiceImpl implements ProjectService {
         ProjectCard[] cardsArray = cardList.toArray(new ProjectCard[0]);
         return new ProjectDetailsResponseDTO(cardsArray);
     }
+
+    @Override
+    public UnitProjectCardResponseDTO getUnitProjectById(IdBasedRequestDTO idBasedRequestDTO) {
+
+        Project project = projectRepository.findById(idBasedRequestDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Project not found with id: " + idBasedRequestDTO.getId()));
+
+
+        String[] imagesArray = new String[0];
+        if (project.getImages() != null && !project.getImages().isEmpty()) {
+            imagesArray = project.getImages()
+                    .stream()
+                    .map(pi -> pi.getImage())
+                    .toArray(String[]::new);
+        }
+
+
+        return new UnitProjectCardResponseDTO(
+                project.getId(),
+                project.getContractor().getId(),
+                project.getDescription(),
+                project.getStartDate(),
+                project.getEstimatedCompletion(),
+                imagesArray,
+                project.getStatus()
+        );
+    }
+
+
+
+
 
 
 
