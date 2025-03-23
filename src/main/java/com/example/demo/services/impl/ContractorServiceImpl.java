@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
 import com.example.demo.dtos.request.PageBasedRequestDTO;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
@@ -166,6 +167,18 @@ public class ContractorServiceImpl implements ContractorService {
 
         return new ContractorNameAndPicResponseDTO(arr);
     }
+
+    public ContractorNameAndPicResponseDTO searchContractorsByIdPack(IdPackBasedRequestDTO idPackBasedRequestDTO) {
+
+        Iterable<Contractor> contractors = contractorRepository.findAllById(Arrays.asList(idPackBasedRequestDTO.getIds()));
+        List<ContractorNameAndPicture> list = new ArrayList<>();
+        for (Contractor c : contractors) {
+            list.add(new ContractorNameAndPicture(c.getId(), c.getName(), c.getProfilePicture()));
+        }
+        ContractorNameAndPicture[] arr = list.toArray(new ContractorNameAndPicture[0]);
+        return new ContractorNameAndPicResponseDTO(arr);
+    }
+
 
     @Override
     public ContractorCardResponseDTO searchContractorCardsByName(NameBasedRequestDTO nameBasedRequestDTO) {

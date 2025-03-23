@@ -40,6 +40,8 @@ public class ProjectController {
         );
     }
 
+
+    @PostMapping("/get-project")
     public ResponseEntity<StandardResponse> getProject(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
 
         UnitProjectCardResponseDTO project = projectService.getUnitProjectById(idBasedRequestDTO);

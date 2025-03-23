@@ -3,6 +3,7 @@ package com.example.demo.controllers;
 import com.example.demo.dtos.ContractorDTO;
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
+import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
 import com.example.demo.dtos.request.PageBasedRequestDTO;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
@@ -74,6 +75,21 @@ public class ContractorController {
         );
     }
 
+    @PostMapping("/get-contractor-name")
+    public ResponseEntity<StandardResponse> getContractorNameAndId(@RequestBody IdPackBasedRequestDTO idPackBasedRequestDTO){
+
+
+        ContractorNameAndPicResponseDTO contractors = contractorService.searchContractorsByIdPack(idPackBasedRequestDTO);
+
+
+
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "contractor cards", contractors),
+                HttpStatus.OK
+        );
+    }
+
 
     @PostMapping("/search-contractor-by-name")
     public ResponseEntity<StandardResponse> getSearchedContractor(@RequestBody NameBasedRequestDTO nameBasedRequestDTO){
@@ -85,6 +101,8 @@ public class ContractorController {
                 HttpStatus.OK
         );
     }
+
+
 
     @PostMapping("/get-contractor-cards")
     public ResponseEntity<StandardResponse> getContractorCards(@RequestBody PageBasedRequestDTO pageBasedRequestDTO){

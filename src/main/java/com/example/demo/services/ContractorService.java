@@ -2,6 +2,7 @@ package com.example.demo.services;
 
 import com.example.demo.dtos.ContractorDTO;
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
 import com.example.demo.dtos.request.PageBasedRequestDTO;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
@@ -23,4 +24,6 @@ public interface ContractorService  {
     public ContractorCardResponseDTO searchContractorCardsByName(NameBasedRequestDTO nameBasedRequestDTO);
 
     public ContractorCardResponseDTO getContractorsByPage(PageBasedRequestDTO pageBasedRequestDTO);
+
+    public ContractorNameAndPicResponseDTO searchContractorsByIdPack(IdPackBasedRequestDTO idPackBasedRequestDTO);
 }
