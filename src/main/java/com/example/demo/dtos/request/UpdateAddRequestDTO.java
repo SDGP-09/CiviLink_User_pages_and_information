@@ -10,7 +10,6 @@ public class UpdateAddRequestDTO {
     private String description;
     private DealField dealField;
     private String[] deletedImages;
-    private MultipartFile[] images;
     private String fullDescription;
     private boolean show;
     private Integer perHour;
@@ -61,13 +60,6 @@ public class UpdateAddRequestDTO {
         this.deletedImages = deletedImages;
     }
 
-    public MultipartFile[] getImages() {
-        return images;
-    }
-
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
-    }
 
     public String getFullDescription() {
         return fullDescription;
@@ -140,7 +132,6 @@ public class UpdateAddRequestDTO {
             String description,
             DealField dealField,
             String[] deletedImages,
-            MultipartFile[] images,
             String fullDescription,
             boolean show,
             Integer perHour,
@@ -155,7 +146,6 @@ public class UpdateAddRequestDTO {
         this.description = description;
         this.dealField = dealField;
         this.deletedImages = deletedImages;
-        this.images = images;
         this.fullDescription = fullDescription;
         this.show = show;
         this.perHour = perHour;

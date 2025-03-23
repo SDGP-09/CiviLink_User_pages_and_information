@@ -12,7 +12,6 @@ public class UpdateProjectRequestDTO {
     private String estimatedCompletion;
     private boolean visible;
     private String[] deletedImages;
-    private MultipartFile[] images;
     private ProjectStatus status;
 
 
@@ -72,13 +71,6 @@ public class UpdateProjectRequestDTO {
         this.deletedImages = deletedImages;
     }
 
-    public MultipartFile[] getImages() {
-        return images;
-    }
-
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
-    }
 
     public ProjectStatus getStatus() {
         return status;
@@ -95,7 +87,6 @@ public class UpdateProjectRequestDTO {
                                    String estimatedCompletion,
                                    boolean visible,
                                    String[] deletedImages,
-                                   MultipartFile[] images,
                                    ProjectStatus status
     ) {
         this.id = id;
@@ -105,7 +96,6 @@ public class UpdateProjectRequestDTO {
         this.estimatedCompletion = estimatedCompletion;
         this.visible = visible;
         this.deletedImages = deletedImages;
-        this.images = images;
         this.status = status;
     }
 

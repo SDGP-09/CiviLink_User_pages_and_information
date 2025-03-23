@@ -12,14 +12,14 @@ import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.services.DealService;
 import com.example.demo.util.StandardResponse;
-import com.google.rpc.context.AttributeContext;
+//import com.google.rpc.context.AttributeContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
-
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -30,7 +30,11 @@ public class DealController {
     private DealService dealService;
 
     @PostMapping("/post-deal")
-    public ResponseEntity<StandardResponse> createDeal(@RequestBody PostAddRequestDTO postAddRequestDTO, Authentication authentication){
+    public ResponseEntity<StandardResponse> createDeal(
+            @RequestBody PostAddRequestDTO postAddRequestDTO,
+            @RequestPart("images") MultipartFile[] images,
+            Authentication authentication
+    ){
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
@@ -47,7 +51,7 @@ public class DealController {
                 postAddRequestDTO.getTitle(),
                 postAddRequestDTO.getDescription(),
                 postAddRequestDTO.getField(),
-                postAddRequestDTO.getImages(),
+                images,
                 postAddRequestDTO.getFullDescription(),
                 postAddRequestDTO.isShow(),
                 postAddRequestDTO.getPerHour(),
@@ -71,7 +75,11 @@ public class DealController {
 
 
     @PutMapping("/update-deal")
-    public ResponseEntity<StandardResponse> updateDeal(@RequestBody UpdateAddRequestDTO updateAddRequestDTO, Authentication authentication){
+    public ResponseEntity<StandardResponse> updateDeal(
+            @RequestBody UpdateAddRequestDTO updateAddRequestDTO,
+            @RequestPart("images") MultipartFile[] images,
+            Authentication authentication)
+    {
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
@@ -86,7 +94,7 @@ public class DealController {
                 updateAddRequestDTO.getDescription(),
                 updateAddRequestDTO.getField(),
                 updateAddRequestDTO.getDeletedImages(),
-                updateAddRequestDTO.getImages(),
+                images,
                 updateAddRequestDTO.getFullDescription(),
                 updateAddRequestDTO.isShow(),
                 updateAddRequestDTO.getPerHour(),

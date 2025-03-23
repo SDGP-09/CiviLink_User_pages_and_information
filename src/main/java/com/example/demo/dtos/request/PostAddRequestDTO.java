@@ -8,7 +8,7 @@ public class PostAddRequestDTO {
     private String title;
     private String description;
     private DealField dealField;
-    private MultipartFile[] images;
+
     private String fullDescription;
     private boolean show;
     private Integer perHour;
@@ -40,14 +40,6 @@ public class PostAddRequestDTO {
 
     public void setField(DealField dealField) {
         this.dealField = dealField;
-    }
-
-    public MultipartFile[] getImages() {
-        return images;
-    }
-
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
     }
 
     public String getFullDescription() {
@@ -117,7 +109,6 @@ public class PostAddRequestDTO {
     public PostAddRequestDTO(String title,
                              String description,
                              DealField dealField,
-                             MultipartFile[] images,
                              String fullDescription,
                              boolean show,
                              Integer perHour,
@@ -130,7 +121,6 @@ public class PostAddRequestDTO {
         this.title = title;
         this.description = description;
         this.dealField = dealField;
-        this.images = images;
         this.fullDescription = fullDescription;
         this.show = show;
         this.perHour = perHour;

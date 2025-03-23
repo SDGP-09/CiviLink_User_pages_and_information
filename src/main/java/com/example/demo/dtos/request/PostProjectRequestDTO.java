@@ -11,7 +11,6 @@ public class PostProjectRequestDTO {
     private String startDate;
     private String estimatedCompletion;
     private boolean visible;
-    private MultipartFile[] images;
     private ProjectStatus status;
 
     public String getName() {
@@ -54,14 +53,6 @@ public class PostProjectRequestDTO {
         this.visible = visible;
     }
 
-    public MultipartFile[] getImages() {
-        return images;
-    }
-
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
-    }
-
     public ProjectStatus getStatus() {
         return status;
     }
@@ -76,7 +67,6 @@ public class PostProjectRequestDTO {
             String startDate,
             String estimatedCompletion,
             boolean visible,
-            MultipartFile[] images,
             ProjectStatus status
     ) {
         this.name = name;
@@ -84,7 +74,6 @@ public class PostProjectRequestDTO {
         this.startDate = startDate;
         this.estimatedCompletion = estimatedCompletion;
         this.visible = visible;
-        this.images = images;
         this.status = status;
     }
 

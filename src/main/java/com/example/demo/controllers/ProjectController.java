@@ -16,6 +16,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.web.multipart.MultipartFile;
 
 
 @RestController
@@ -57,7 +58,11 @@ public class ProjectController {
     }
 
     @PostMapping("/post-project")
-    public ResponseEntity<StandardResponse> addProject(@RequestBody PostProjectRequestDTO projectRequestDTO, Authentication authentication){
+    public ResponseEntity<StandardResponse> addProject(
+            @RequestBody PostProjectRequestDTO projectRequestDTO,
+            @RequestPart("images") MultipartFile[] images,
+            Authentication authentication
+    ){
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
@@ -72,7 +77,7 @@ public class ProjectController {
                 projectRequestDTO.getStartDate(),
                 projectRequestDTO.getEstimatedCompletion(),
                 projectRequestDTO.isVisible(),
-                projectRequestDTO.getImages(),
+                images,
                 projectRequestDTO.getStatus()
         ));
 
@@ -88,7 +93,11 @@ public class ProjectController {
 
 
     @PostMapping("/update-project")
-    public ResponseEntity<StandardResponse> UpdateProject(@RequestBody UpdateProjectRequestDTO updateProjectRequestDTO, Authentication authentication){
+    public ResponseEntity<StandardResponse> UpdateProject(
+            @RequestBody UpdateProjectRequestDTO updateProjectRequestDTO,
+            @RequestPart("images") MultipartFile[] images,
+            Authentication authentication)
+    {
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
@@ -106,7 +115,7 @@ public class ProjectController {
                 updateProjectRequestDTO.getEstimatedCompletion(),
                 updateProjectRequestDTO.isVisible(),
                 updateProjectRequestDTO.getDeletedImages(),
-                updateProjectRequestDTO.getImages(),
+                images,
                 updateProjectRequestDTO.getStatus()
         ));
 
