@@ -56,13 +56,11 @@ public class DealServiceImpl implements DealService {
                 contractor
         );
 
-
         List<DealImage> dealImages = new ArrayList<>();
         MultipartFile[] images = postAddInternalDTO.getImages();
         if (images != null) {
             for (MultipartFile multipartFile : images) {
                 try {
-
                     byte[] fileBytes = multipartFile.getBytes();
                     String uploadedFileName = storageService.uploadFile(fileBytes, multipartFile.getContentType());
                     DealImage dealImage = new DealImage();
@@ -78,17 +76,14 @@ public class DealServiceImpl implements DealService {
         deal.setImages(dealImages);
         Deal savedDeal = dealRepository.save(deal);
 
+        // Instead of generating signed URLs, we simply use the stored file names.
         List<String> imageLinks = new ArrayList<>();
         if (savedDeal.getImages() != null) {
             for (DealImage image : savedDeal.getImages()) {
-                String signedUrl = storageService.generateSignedUrl(image.getImage());
-                imageLinks.add(signedUrl);
+                imageLinks.add(image.getImage());
             }
         }
-
         String[] imageSet = imageLinks.toArray(new String[0]);
-
-
 
         return new AddResponseDTO(
                 savedDeal.getId(),
@@ -111,7 +106,7 @@ public class DealServiceImpl implements DealService {
 
 
     @Override
-    public AddResponseDTO updateDTO(UpdateAddInternalDTO updateAddInternalDTO){
+    public AddResponseDTO updateDTO(UpdateAddInternalDTO updateAddInternalDTO) {
 
         Deal deal = dealRepository.findById(updateAddInternalDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Deal not found with id: " + updateAddInternalDTO.getId()));
@@ -128,15 +123,14 @@ public class DealServiceImpl implements DealService {
         deal.setPerYear(updateAddInternalDTO.getPerYear() != null ? updateAddInternalDTO.getPerYear() : 0);
         deal.setPrice(updateAddInternalDTO.getPrice() != null ? updateAddInternalDTO.getPrice() : 0);
 
+        // Process deletions
         String[] deletedImages = updateAddInternalDTO.getDeletedImages();
         if (deletedImages != null && deletedImages.length > 0) {
-
             List<DealImage> updatedImages = new ArrayList<>();
             for (DealImage img : deal.getImages()) {
                 boolean shouldDelete = false;
                 for (String delName : deletedImages) {
                     if (img.getImage().equals(delName)) {
-
                         try {
                             storageService.deleteFile(delName);
                         } catch (IOException e) {
@@ -153,19 +147,17 @@ public class DealServiceImpl implements DealService {
             deal.setImages(updatedImages);
         }
 
-
-
+        // Process new images
         MultipartFile[] newImages = updateAddInternalDTO.getImages();
         if (newImages != null) {
-
             if (deal.getImages() == null) {
                 deal.setImages(new ArrayList<>());
             }
             for (MultipartFile multipartFile : newImages) {
-
                 if (multipartFile != null && !multipartFile.isEmpty()) {
                     try {
                         byte[] fileBytes = multipartFile.getBytes();
+                        // Use the uploadFile method to upload the file and get its stored file name.
                         String uploadedFileName = storageService.uploadFile(fileBytes, multipartFile.getContentType());
                         DealImage newDealImage = new DealImage();
                         newDealImage.setImage(uploadedFileName);
@@ -179,18 +171,14 @@ public class DealServiceImpl implements DealService {
         }
         Deal updatedDeal = dealRepository.save(deal);
 
-        // 6. Generate signed URLs for each image.
+        // Instead of generating signed URLs, simply return the stored file names.
         List<String> imageLinks = new ArrayList<>();
         if (updatedDeal.getImages() != null) {
             for (DealImage image : updatedDeal.getImages()) {
-                String signedUrl = storageService.generateSignedUrl(image.getImage());
-                imageLinks.add(signedUrl);
+                imageLinks.add(image.getImage());
             }
         }
-        // Convert List<String> to an array if needed.
         String[] imageSet = imageLinks.toArray(new String[0]);
-
-
 
         return new AddResponseDTO(
                 updatedDeal.getId(),
