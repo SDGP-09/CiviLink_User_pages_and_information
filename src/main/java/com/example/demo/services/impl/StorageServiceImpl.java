@@ -5,14 +5,12 @@ import com.cloudinary.utils.ObjectUtils;
 import com.example.demo.repositories.ImageRepository;
 import com.example.demo.services.StorageService;
 import com.example.demo.util.UploadImageDetails;
-import com.google.auth.oauth2.ServiceAccountCredentials;
-import com.google.cloud.storage.*;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.annotation.PostConstruct;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +18,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Map;
 import java.util.UUID;
-//import java.util.concurrent.TimeUnit;
+
 
 
 @SuppressWarnings("ALL")

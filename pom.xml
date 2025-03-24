@@ -31,17 +31,17 @@
 	</properties>
 
 
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>com.google.cloud</groupId>
-				<artifactId>google-cloud-bom</artifactId>
-				<version>0.205.0</version> <!-- Check Maven Central for the latest version -->
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+<!--	<dependencyManagement>-->
+<!--		<dependencies>-->
+<!--			<dependency>-->
+<!--				<groupId>com.google.cloud</groupId>-->
+<!--				<artifactId>google-cloud-bom</artifactId>-->
+<!--				<version>0.205.0</version> &lt;!&ndash; Check Maven Central for the latest version &ndash;&gt;-->
+<!--				<type>pom</type>-->
+<!--				<scope>import</scope>-->
+<!--			</dependency>-->
+<!--		</dependencies>-->
+<!--	</dependencyManagement>-->
 
 
 	<dependencies>
@@ -77,10 +77,10 @@
 		</dependency>
 
 
-		<dependency>
-			<groupId>com.google.cloud</groupId>
-			<artifactId>google-cloud-storage</artifactId>
-		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>com.google.cloud</groupId>-->
+<!--			<artifactId>google-cloud-storage</artifactId>-->
+<!--		</dependency>-->
 
 		<dependency>
 			<groupId>com.mysql</groupId>
