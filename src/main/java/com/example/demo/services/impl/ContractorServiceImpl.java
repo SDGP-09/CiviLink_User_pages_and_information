@@ -25,7 +25,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
-import com.example.demo.dtos.ContractorDTO;
 
 import java.util.*;
 
@@ -41,36 +40,36 @@ public class ContractorServiceImpl implements ContractorService {
     @Autowired
     private DealRepository dealRepository;
 
-    public ContractorDTO addContractor(ContractorDTO contractorDTO) {
-        Contractor contractor = new Contractor();
-        contractor.setName(contractorDTO.getName());
-        contractor.setLocation(contractorDTO.getLocation());
-        contractor.setCompanyName(contractorDTO.getCompanyName());
-//        contractor.setRating(contractorDTO.getRating());
-        contractor.setProfilePicture(contractorDTO.getProfilePicture());
+//    public ContractorDTO addContractor(ContractorDTO contractorDTO) {
+//        Contractor contractor = new Contractor();
+//        contractor.setName(contractorDTO.getName());
+//        contractor.setLocation(contractorDTO.getLocation());
+//        contractor.setCompanyName(contractorDTO.getCompanyName());
+////        contractor.setRating(contractorDTO.getRating());
+//        contractor.setProfilePicture(contractorDTO.getProfilePicture());
+//
+//        contractorRepository.save(contractor);
+//        return contractorDTO;
+//    }
 
-        contractorRepository.save(contractor);
-        return contractorDTO;
-    }
 
+//    public List<ContractorDTO> searchContractors(String query) {
+////        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(query, query);
+////        return contractors.stream()
+////                .map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()))
+////                .toList();
+//        return null;
+//    }
 
-    public List<ContractorDTO> searchContractors(String query) {
-//        List<Contractor> contractors = contractorRepository.findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(query, query);
-//        return contractors.stream()
-//                .map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()))
-//                .toList();
-        return null;
-    }
-
-    public Optional<ContractorDTO> getContractorProfile(Long id) {
-//        Optional<Contractor> contractor = contractorRepository.findById(id);
-//        if (contractor.isEmpty()) {
-//            throw new ResourceNotFoundException("Contractor not found with id: " + id);
-//        }
-//        Contractor savedContractor = contractor.get();
-//        return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
-        return null;
-    }
+//    public Optional<ContractorDTO> getContractorProfile(Long id) {
+////        Optional<Contractor> contractor = contractorRepository.findById(id);
+////        if (contractor.isEmpty()) {
+////            throw new ResourceNotFoundException("Contractor not found with id: " + id);
+////        }
+////        Contractor savedContractor = contractor.get();
+////        return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
+//        return null;
+//    }
 
     @Override
     public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO) {

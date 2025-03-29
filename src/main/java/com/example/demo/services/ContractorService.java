@@ -1,6 +1,5 @@
 package com.example.demo.services;
 
-import com.example.demo.dtos.ContractorDTO;
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
 import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
@@ -14,9 +13,9 @@ import java.util.Optional;
 
 public interface ContractorService  {
 
-    public ContractorDTO addContractor(ContractorDTO contractorDTO);
-    public List<ContractorDTO> searchContractors(String query);
-    public Optional<ContractorDTO> getContractorProfile(Long id);
+//    public ContractorDTO addContractor(ContractorDTO contractorDTO);
+//    public List<ContractorDTO> searchContractors(String query);
+//    public Optional<ContractorDTO> getContractorProfile(Long id);
     public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO);
 
     public ContractorNameAndPicResponseDTO searchContractorsByName(NameBasedRequestDTO nameBasedRequestDTO);
