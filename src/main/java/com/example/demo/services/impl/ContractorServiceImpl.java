@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.request.ContractorCreationRequestDTO;
 import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
 import com.example.demo.dtos.request.PageBasedRequestDTO;
@@ -70,6 +71,21 @@ public class ContractorServiceImpl implements ContractorService {
 ////        return contractor.map(c -> new ContractorDTO(c.getName(), c.getLocation(), c.getCompanyName(), c.getRating(), c.getProfilePicture()));
 //        return null;
 //    }
+
+
+    @Override
+    public void createContractor(ContractorCreationRequestDTO contractorCreationRequestDTO) {
+
+        Contractor contractor = new Contractor();
+
+        contractor.setId(contractorCreationRequestDTO.getId());
+        contractor.setName(contractorCreationRequestDTO.getName());
+        contractor.setLocation(contractorCreationRequestDTO.getLocation());
+        contractor.setCompanyName(contractorCreationRequestDTO.getCompanyName());
+        contractor.setField(contractorCreationRequestDTO.getField());
+
+        contractorRepository.save(contractor);
+    }
 
     @Override
     public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO) {

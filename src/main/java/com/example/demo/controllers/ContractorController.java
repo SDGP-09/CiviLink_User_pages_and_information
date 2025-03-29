@@ -1,16 +1,14 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
-import com.example.demo.dtos.request.IdBasedRequestDTO;
-import com.example.demo.dtos.request.IdPackBasedRequestDTO;
-import com.example.demo.dtos.request.NameBasedRequestDTO;
-import com.example.demo.dtos.request.PageBasedRequestDTO;
+import com.example.demo.dtos.request.*;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
 import com.example.demo.dtos.response.ContractorCardResponseDTO;
 import com.example.demo.dtos.response.ContractorNameAndPicResponseDTO;
 import com.example.demo.services.ContractorService;
 import com.example.demo.services.impl.ContractorServiceImpl;
 import com.example.demo.util.StandardResponse;
+import jakarta.el.StandardELContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -113,6 +111,18 @@ public class ContractorController {
                 HttpStatus.OK
         );
 
+    }
+
+    @PostMapping("/create-contractor")
+    public ResponseEntity<StandardResponse> createContractor(@RequestBody ContractorCreationRequestDTO contractorCreationRequestDTO){
+
+        contractorService.createContractor(contractorCreationRequestDTO);
+
+
+        return new ResponseEntity<>(
+                new StandardResponse(200, "contractor created", true),
+                HttpStatus.OK
+        );
     }
 
 

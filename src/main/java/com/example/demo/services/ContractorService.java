@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.request.ContractorCreationRequestDTO;
 import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
 import com.example.demo.dtos.request.PageBasedRequestDTO;
@@ -16,6 +17,9 @@ public interface ContractorService  {
 //    public ContractorDTO addContractor(ContractorDTO contractorDTO);
 //    public List<ContractorDTO> searchContractors(String query);
 //    public Optional<ContractorDTO> getContractorProfile(Long id);
+
+    public void createContractor(ContractorCreationRequestDTO contractorCreationRequestDTO);
+
     public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO);
 
     public ContractorNameAndPicResponseDTO searchContractorsByName(NameBasedRequestDTO nameBasedRequestDTO);
