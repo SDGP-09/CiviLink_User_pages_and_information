@@ -20,7 +20,7 @@ import org.springframework.security.oauth2.jwt.Jwt;
 @RestController
 
 // Make sure to add the correct mapping.
-@RequestMapping("/api/blablabla")
+@RequestMapping("/api/ratings")
 public class RatingController {
 
     @Autowired
