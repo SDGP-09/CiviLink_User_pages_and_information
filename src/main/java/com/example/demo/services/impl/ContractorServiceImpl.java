@@ -223,7 +223,7 @@ public class ContractorServiceImpl implements ContractorService {
     @Override
     public ContractorCardResponseDTO getContractorsByPage(PageBasedRequestDTO pageBasedRequestDTO) {
 
-        if (pageBasedRequestDTO.getPageNumber() < 1) {
+        if (pageBasedRequestDTO.getPageNumber() <= 1) { // changed here
             throw new IllegalArgumentException("Page number must be 1 or greater.");
         }
 
