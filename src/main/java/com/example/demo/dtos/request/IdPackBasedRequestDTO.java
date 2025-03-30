@@ -2,17 +2,17 @@ package com.example.demo.dtos.request;
 
 public class IdPackBasedRequestDTO {
 
-    private Long[] ids;
+    private String[] ids;
 
-    public Long[] getIds() {
+    public String[] getIds() {
         return ids;
     }
 
-    public void setIds(Long[] ids) {
+    public void setIds(String[] ids) {
         this.ids = ids;
     }
 
-    public IdPackBasedRequestDTO(Long[] ids) {
+    public IdPackBasedRequestDTO(String[] ids) {
         this.ids = ids;
     }
 

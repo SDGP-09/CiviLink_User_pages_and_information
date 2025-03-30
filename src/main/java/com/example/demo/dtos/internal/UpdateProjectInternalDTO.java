@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UpdateProjectInternalDTO {
 
     private Long id;
-    private Long contractorId;
+    private String contractorId;
     private String name;
     private String description;
     private String startDate;
@@ -25,11 +25,11 @@ public class UpdateProjectInternalDTO {
         this.id = id;
     }
 
-    public Long getContractorId() {
+    public String getContractorId() {
         return contractorId;
     }
 
-    public void setContractorId(Long contractorId) {
+    public void setContractorId(String contractorId) {
         this.contractorId = contractorId;
     }
 
@@ -101,7 +101,7 @@ public class UpdateProjectInternalDTO {
 
     public UpdateProjectInternalDTO(
             Long id,
-            Long contractorId,
+            String contractorId,
             String name,
             String description,
             String startDate,

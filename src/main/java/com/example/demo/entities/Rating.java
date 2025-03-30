@@ -12,7 +12,8 @@ public class Rating {
 
     private int rating;
 
-    private Long senderId;
+    //Change the id here...
+    private String senderId;
 
 
     @ManyToOne
@@ -51,7 +52,7 @@ public class Rating {
         this.contractor = contractor;
     }
 
-    public Long getSenderId() {
+    public String getSenderId() {
         return senderId;
     }
 
@@ -59,11 +60,11 @@ public class Rating {
         this.rating = rating;
     }
 
-    public void setSenderId(Long senderId) {
+    public void setSenderId(String senderId) {
         this.senderId = senderId;
     }
 
-    public Rating(int rating, Contractor contractor, Long sendingId) {
+    public Rating(int rating, Contractor contractor, String sendingId) {
 
         this.rating = rating;
 

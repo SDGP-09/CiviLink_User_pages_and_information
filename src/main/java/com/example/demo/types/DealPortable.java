@@ -5,7 +5,7 @@ import com.example.demo.enums.DealField;
 public class DealPortable {
 
     private Long id;
-    private Long ownerId;
+    private String ownerId;
     private String title;
     private String description;
     private DealField dealField;
@@ -27,11 +27,11 @@ public class DealPortable {
         this.id = id;
     }
 
-    public Long getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Long ownerId) {
+    public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -134,7 +134,7 @@ public class DealPortable {
 
     public DealPortable(
             Long id,
-            Long ownerId,
+            String ownerId,
             String title,
             String description,
             DealField dealField,

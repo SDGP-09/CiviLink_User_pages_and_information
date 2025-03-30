@@ -1,6 +1,7 @@
 package com.example.demo.services;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.internal.UserIdBasedInternalDTO;
 import com.example.demo.dtos.request.ContractorCreationRequestDTO;
 import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
@@ -20,7 +21,7 @@ public interface ContractorService  {
 
     public void createContractor(ContractorCreationRequestDTO contractorCreationRequestDTO);
 
-    public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO);
+    public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(UserIdBasedInternalDTO userIdBasedInternalDTO);
 
     public ContractorNameAndPicResponseDTO searchContractorsByName(NameBasedRequestDTO nameBasedRequestDTO);
 

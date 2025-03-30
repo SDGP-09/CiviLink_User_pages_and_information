@@ -2,6 +2,7 @@ package com.example.demo.services.impl;
 
 import com.example.demo.dtos.internal.AddUpdateRatingInternalDTO;
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.internal.UserIdBasedInternalDTO;
 import com.example.demo.dtos.response.RatingSummeryResponseDTO;
 import com.example.demo.entities.Rating;
 import com.example.demo.exception.ResourceNotFoundException;
@@ -26,10 +27,10 @@ public class RatingServiceImpl implements RatingService {
     private ContractorRepository contractorRepository;
 
     @Override
-    public RatingSummeryResponseDTO getRatingSummery(IdBasedInternalDTO id) {
+    public RatingSummeryResponseDTO getRatingSummery(UserIdBasedInternalDTO userIdBasedInternalDTO) {
 
         try{
-            List<Object[]> results = ratingRepository.findRatingCountsByContractorId(id.getId());
+            List<Object[]> results = ratingRepository.findRatingCountsByContractorId(userIdBasedInternalDTO.getId());
 
             int ones =(Integer) results.get(0)[1];
             int twos =(Integer) results.get(1)[1];

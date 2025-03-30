@@ -2,15 +2,15 @@ package com.example.demo.types;
 
 public class ContractorNameAndPicture {
 
-    private Long id;
+    private String id;
     private String name;
     private String profile;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -30,7 +30,7 @@ public class ContractorNameAndPicture {
         this.profile = profile;
     }
 
-    public ContractorNameAndPicture(Long id, String name, String profile) {
+    public ContractorNameAndPicture(String id, String name, String profile) {
         this.id = id;
         this.name = name;
         this.profile = profile;

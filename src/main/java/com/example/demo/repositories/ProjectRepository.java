@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface ProjectRepository extends JpaRepository<Project, Long> {
 
-    List<Project> findByContractorId(Long contractorId);
+    List<Project> findByContractorId(String contractorId);
 
 
 

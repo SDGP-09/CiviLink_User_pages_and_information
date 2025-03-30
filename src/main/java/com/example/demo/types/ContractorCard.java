@@ -1,16 +1,16 @@
 package com.example.demo.types;
 
 public class ContractorCard {
-    private Long id;
+    private String id;
     private String name;
     private Integer rating;
     private String profilePicture;
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -38,7 +38,7 @@ public class ContractorCard {
         this.profilePicture = profilePicture;
     }
 
-    public ContractorCard(Long id, String name, Integer rating, String profilePicture) {
+    public ContractorCard(String id, String name, Integer rating, String profilePicture) {
         this.id = id;
         this.name = name;
         this.rating = rating;

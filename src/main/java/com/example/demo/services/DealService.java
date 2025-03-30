@@ -4,6 +4,7 @@ import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
+import com.example.demo.dtos.request.UserIdBasedRequestDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.dtos.response.AllDealsResponseDTO;
 
@@ -18,5 +19,5 @@ public interface DealService {
 
     public void deleteAdd(AddIdBasedInternalDTO addIdBasedInternalDTO);
 
-    public AllDealsResponseDTO getDealsByContractorId(IdBasedRequestDTO idBasedRequestDTO);
+    public AllDealsResponseDTO getDealsByContractorId(UserIdBasedRequestDTO userIdBasedRequestDTO);
 }

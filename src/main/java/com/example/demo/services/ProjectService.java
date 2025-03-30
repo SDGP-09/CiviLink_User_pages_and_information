@@ -5,15 +5,16 @@ import com.example.demo.dtos.internal.PostProjectInternalDTO;
 import com.example.demo.dtos.internal.ProjectIdBasedInternalDTO;
 import com.example.demo.dtos.internal.UpdateProjectInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
+import com.example.demo.dtos.request.UserIdBasedRequestDTO;
 import com.example.demo.dtos.response.ProjectCardResponseDTO;
 import com.example.demo.dtos.response.ProjectDetailsResponseDTO;
 import com.example.demo.dtos.response.UnitProjectCardResponseDTO;
 
 public interface ProjectService {
 
-    public ProjectDetailsResponseDTO getVisibleProjectsByContractorId(IdBasedRequestDTO idBasedRequestDTO);
+    public ProjectDetailsResponseDTO getVisibleProjectsByContractorId(UserIdBasedRequestDTO userIdBasedRequestDTO);
 
-    public ProjectDetailsResponseDTO getAllProjectsByContractorId(IdBasedRequestDTO idBasedRequestDTO);
+    public ProjectDetailsResponseDTO getAllProjectsByContractorId(UserIdBasedRequestDTO userIdBasedRequestDTO);
 
     public ProjectCardResponseDTO postProject(PostProjectInternalDTO dto);
 

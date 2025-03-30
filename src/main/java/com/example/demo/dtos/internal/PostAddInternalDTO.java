@@ -4,7 +4,7 @@ import com.example.demo.enums.DealField;
 import org.springframework.web.multipart.MultipartFile;
 
 public class PostAddInternalDTO {
-    private Long OwnerId;
+    private String OwnerId;
     private String title;
     private String description;
     private DealField dealField;
@@ -18,11 +18,11 @@ public class PostAddInternalDTO {
     private Integer perYear;
     private Integer price;
 
-    public Long getOwnerId() {
+    public String getOwnerId() {
         return OwnerId;
     }
 
-    public void setOwnerId(Long ownerId) {
+    public void setOwnerId(String ownerId) {
         OwnerId = ownerId;
     }
 
@@ -123,7 +123,7 @@ public class PostAddInternalDTO {
     }
 
     public PostAddInternalDTO(
-            Long ownerId,
+            String ownerId,
             String title,
             String description,
             DealField dealField,

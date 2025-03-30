@@ -4,7 +4,7 @@ import com.example.demo.enums.ProjectStatus;
 
 public class ProjectCard {
     private Long id;
-    private Long contractorId;
+    private String contractorId;
     private String description;
     private String startDate;
     private String completion;
@@ -21,11 +21,11 @@ public class ProjectCard {
         this.id = id;
     }
 
-    public Long getContractorId() {
+    public String getContractorId() {
         return contractorId;
     }
 
-    public void setContractorId(Long contractorId) {
+    public void setContractorId(String contractorId) {
         this.contractorId = contractorId;
     }
 
@@ -79,7 +79,7 @@ public class ProjectCard {
 
     public ProjectCard(
             Long id,
-            Long contractorId,
+            String contractorId,
             String description,
             String startDate,
             String completion,

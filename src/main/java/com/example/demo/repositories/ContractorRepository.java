@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface ContractorRepository extends JpaRepository<Contractor, Long> {
+public interface ContractorRepository extends JpaRepository<Contractor, String> {
     List<Contractor> findByNameContainingIgnoreCaseOrLocationContainingIgnoreCase(String name, String location);
 
     List<Contractor> findByNameContainingIgnoreCase(String name);

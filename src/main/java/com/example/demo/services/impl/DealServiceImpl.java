@@ -4,6 +4,7 @@ import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
+import com.example.demo.dtos.request.UserIdBasedRequestDTO;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.entities.Contractor;
@@ -249,7 +250,7 @@ public class DealServiceImpl implements DealService {
     }
 
     @Override
-    public AllDealsResponseDTO getDealsByContractorId(IdBasedRequestDTO idBasedRequestDTO) {
+    public AllDealsResponseDTO getDealsByContractorId(UserIdBasedRequestDTO idBasedRequestDTO) {
 
         contractorRepository.findById(idBasedRequestDTO.getId())
                 .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + idBasedRequestDTO.getId()));

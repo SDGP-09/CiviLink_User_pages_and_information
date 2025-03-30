@@ -6,6 +6,7 @@ import com.example.demo.dtos.internal.UpdateProjectInternalDTO;
 import com.example.demo.dtos.request.IdBasedRequestDTO;
 import com.example.demo.dtos.request.PostProjectRequestDTO;
 import com.example.demo.dtos.request.UpdateProjectRequestDTO;
+import com.example.demo.dtos.request.UserIdBasedRequestDTO;
 import com.example.demo.dtos.response.ProjectCardResponseDTO;
 import com.example.demo.dtos.response.ProjectDetailsResponseDTO;
 import com.example.demo.dtos.response.UnitProjectCardResponseDTO;
@@ -28,9 +29,9 @@ public class ProjectController {
     private ProjectService projectService;
 
     @PostMapping("/get-visible-projects")
-    public ResponseEntity<StandardResponse> getVisibleProjects(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
+    public ResponseEntity<StandardResponse> getVisibleProjects(@RequestBody UserIdBasedRequestDTO userIdBasedRequestDTO){
 
-        ProjectDetailsResponseDTO projects = projectService.getVisibleProjectsByContractorId(idBasedRequestDTO);
+        ProjectDetailsResponseDTO projects = projectService.getVisibleProjectsByContractorId(userIdBasedRequestDTO);
 
 
 
@@ -66,10 +67,10 @@ public class ProjectController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
-        ProjectDetailsResponseDTO projects = projectService.getAllProjectsByContractorId(new IdBasedRequestDTO(senderId));
+        ProjectDetailsResponseDTO projects = projectService.getAllProjectsByContractorId(new UserIdBasedRequestDTO(senderId));
 
 
 
@@ -89,8 +90,8 @@ public class ProjectController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
         ProjectCardResponseDTO project = projectService.postProject(new PostProjectInternalDTO(
                 senderId,
@@ -124,8 +125,8 @@ public class ProjectController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
 
         ProjectCardResponseDTO updatedProject = projectService.updateProject(new UpdateProjectInternalDTO(
@@ -158,8 +159,8 @@ public class ProjectController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
 
         projectService.toggleProjectVisibility(new ProjectIdBasedInternalDTO(
@@ -180,8 +181,8 @@ public class ProjectController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
 
         projectService.deleteProject(new ProjectIdBasedInternalDTO(

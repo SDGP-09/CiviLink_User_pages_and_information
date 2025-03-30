@@ -17,9 +17,9 @@ public interface RatingRepository extends JpaRepository<Rating, Long> {
             "FROM Rating r " +
             "WHERE r.contractor.id = :contractorId " +
             "GROUP BY r.rating")
-    List<Object[]> findRatingCountsByContractorId(@Param("contractorId") Long contractorId);
+    List<Object[]> findRatingCountsByContractorId(@Param("contractorId") String contractorId);
 
     @Query("SELECT r FROM Rating r WHERE r.senderId = :senderId AND r.contractor.id = :contractorId")
-    Optional<Rating> findBySenderIdAndContractorId(@Param("senderId") Long senderId,
-                                                   @Param("contractorId") Long contractorId);
+    Optional<Rating> findBySenderIdAndContractorId(@Param("senderId") String senderId,
+                                                   @Param("contractorId") String contractorId);
 }

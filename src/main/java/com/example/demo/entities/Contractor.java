@@ -9,7 +9,7 @@ import java.util.List;
 public class Contractor {
 
     @Id
-    private Long id;
+    private String id;
 
     @Column(nullable = false)
     private String name;
@@ -38,7 +38,7 @@ public class Contractor {
     // Constructors
     public Contractor() {}
 
-    public Contractor(Long id, String name, String location, String companyName, ContractorField field) {
+    public Contractor(String id, String name, String location, String companyName, ContractorField field) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -47,7 +47,7 @@ public class Contractor {
     }
 
     public Contractor(
-            Long id,
+            String id,
             String name,
             String location,
             String companyName,
@@ -69,8 +69,8 @@ public class Contractor {
         this.projects = projects;
     }
 
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
+    public String getId() { return id; }
+    public void setId(String id) { this.id = id; }
 
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
