@@ -17,7 +17,7 @@ public class ImagesController {
     @Autowired
     private ImageService imageService;
 
-    @PostMapping
+    @PostMapping("/add")
     public ResponseEntity<StandardResponse> UploadImageList(
             @RequestParam("images") List<MultipartFile> images
     ){
