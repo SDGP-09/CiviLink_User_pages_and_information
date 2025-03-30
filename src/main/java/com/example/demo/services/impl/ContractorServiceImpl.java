@@ -1,6 +1,7 @@
 package com.example.demo.services.impl;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.internal.UserIdBasedInternalDTO;
 import com.example.demo.dtos.request.ContractorCreationRequestDTO;
 import com.example.demo.dtos.request.IdPackBasedRequestDTO;
 import com.example.demo.dtos.request.NameBasedRequestDTO;
@@ -88,13 +89,13 @@ public class ContractorServiceImpl implements ContractorService {
     }
 
     @Override
-    public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(IdBasedInternalDTO internalDTO) {
+    public CompanyDetailsResponseDTO getCompanyDetailsByContractorId(UserIdBasedInternalDTO userIdBasedInternalDTO) {
 
-        Contractor contractor = contractorRepository.findById(internalDTO.getId())
-                .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + internalDTO.getId()));
+        Contractor contractor = contractorRepository.findById(userIdBasedInternalDTO.getId())
+                .orElseThrow(() -> new ResourceNotFoundException("Contractor not found with id: " + userIdBasedInternalDTO.getId()));
 
 
-        List<Object[]> ratingResults = ratingRepository.findRatingCountsByContractorId(internalDTO.getId());
+        List<Object[]> ratingResults = ratingRepository.findRatingCountsByContractorId(userIdBasedInternalDTO.getId());
         Map<Integer, Integer> ratingMap = new HashMap<>();
         for (Object[] row : ratingResults) {
             int ratingValue = (int) row[0];
@@ -106,7 +107,7 @@ public class ContractorServiceImpl implements ContractorService {
         }
 
 
-        List<Deal> deals = dealRepository.findByContractorId(internalDTO.getId());
+        List<Deal> deals = dealRepository.findByContractorId(userIdBasedInternalDTO.getId());
         List<MiniDealPortable> miniDealList = new ArrayList<>();
         for (Deal deal : deals) {
             if (deal.isVisible()) {

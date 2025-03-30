@@ -4,10 +4,7 @@ package com.example.demo.controllers;
 import com.example.demo.dtos.internal.AddIdBasedInternalDTO;
 import com.example.demo.dtos.internal.PostAddInternalDTO;
 import com.example.demo.dtos.internal.UpdateAddInternalDTO;
-import com.example.demo.dtos.request.AddIdBasedRequestDTO;
-import com.example.demo.dtos.request.IdBasedRequestDTO;
-import com.example.demo.dtos.request.PostAddRequestDTO;
-import com.example.demo.dtos.request.UpdateAddRequestDTO;
+import com.example.demo.dtos.request.*;
 import com.example.demo.dtos.response.AddResponseDTO;
 import com.example.demo.dtos.response.AllDealsResponseDTO;
 import com.example.demo.services.DealService;
@@ -39,8 +36,8 @@ public class DealController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
 
 
@@ -84,8 +81,8 @@ public class DealController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim);
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim);
 
         AddResponseDTO response = dealService.updateDTO(new UpdateAddInternalDTO(
                 updateAddRequestDTO.getId(),
@@ -117,8 +114,8 @@ public class DealController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim);
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim);
 
         dealService.toggleVisibility(new AddIdBasedInternalDTO(
                 addIdBasedRequestDTO.getAddId(),
@@ -137,8 +134,8 @@ public class DealController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim);
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim);
 
         dealService.deleteAdd(new AddIdBasedInternalDTO(
                 addIdBasedRequestDTO.getAddId(),
@@ -152,10 +149,10 @@ public class DealController {
     }
 
     @PostMapping("/get-all-deals")
-    public ResponseEntity<StandardResponse> getAllDeals(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
+    public ResponseEntity<StandardResponse> getAllDeals(@RequestBody UserIdBasedRequestDTO userIdBasedRequestDTO){
 
 
-        AllDealsResponseDTO deals = dealService.getDealsByContractorId(idBasedRequestDTO);
+        AllDealsResponseDTO deals = dealService.getDealsByContractorId(userIdBasedRequestDTO);
 
         return new ResponseEntity<>(
                 new StandardResponse(200, "Rating Posted", deals),

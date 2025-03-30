@@ -2,6 +2,7 @@ package com.example.demo.controllers;
 
 
 import com.example.demo.dtos.internal.AddUpdateRatingInternalDTO;
+import com.example.demo.dtos.internal.UserIdBasedInternalDTO;
 import com.example.demo.dtos.request.AddUpdateRequestDTO;
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
 import com.example.demo.dtos.response.RatingSummeryResponseDTO;
@@ -10,10 +11,7 @@ import com.example.demo.util.StandardResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.oauth2.jwt.Jwt;
 
@@ -34,11 +32,11 @@ public class RatingController {
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
 
-        RatingSummeryResponseDTO ratingSummery = ratingService.getRatingSummery(new IdBasedInternalDTO(senderId));
+        RatingSummeryResponseDTO ratingSummery = ratingService.getRatingSummery(new UserIdBasedInternalDTO(senderId));
 
         return new ResponseEntity<>(
                 new StandardResponse(200, "Rating summery", ratingSummery),
@@ -46,15 +44,15 @@ public class RatingController {
         );
     }
 
-
-    public ResponseEntity<StandardResponse> addUpdate(@RequestBody AddUpdateRequestDTO postAddUpdateRatingDTO, Authentication authentication){
+    @PostMapping("/rate")
+    public ResponseEntity<StandardResponse> addUpdateRating(@RequestBody AddUpdateRequestDTO postAddUpdateRatingDTO, Authentication authentication){
 
 
         Jwt jwt =(Jwt) authentication.getPrincipal();
 
 
-        String senderIdClaim = jwt.getClaimAsString("sub");
-        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
+        String senderId = jwt.getClaimAsString("sub");
+//        Long senderId = Long.valueOf(senderIdClaim); //Make sure that the user id will be all ways long
 
         ratingService.addUpdateRating(new AddUpdateRatingInternalDTO(senderId, postAddUpdateRatingDTO.getRateReceiver(), postAddUpdateRatingDTO.getRating()));
 

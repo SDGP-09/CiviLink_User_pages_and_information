@@ -1,6 +1,7 @@
 package com.example.demo.controllers;
 
 import com.example.demo.dtos.internal.IdBasedInternalDTO;
+import com.example.demo.dtos.internal.UserIdBasedInternalDTO;
 import com.example.demo.dtos.request.*;
 import com.example.demo.dtos.response.CompanyDetailsResponseDTO;
 import com.example.demo.dtos.response.ContractorCardResponseDTO;
@@ -45,9 +46,9 @@ public class ContractorController {
 //    }
 
     @PostMapping("/Company-details")
-    public ResponseEntity<StandardResponse> getContractorDetails(@RequestBody IdBasedRequestDTO idBasedRequestDTO){
+    public ResponseEntity<StandardResponse> getContractorDetails(@RequestBody UserIdBasedRequestDTO userIdBasedRequestDTO){
 
-        CompanyDetailsResponseDTO companyDetailsResponseDTO = contractorService.getCompanyDetailsByContractorId(new IdBasedInternalDTO(idBasedRequestDTO.getId()));
+        CompanyDetailsResponseDTO companyDetailsResponseDTO = contractorService.getCompanyDetailsByContractorId(new UserIdBasedInternalDTO(userIdBasedRequestDTO.getId()));
 
         return new ResponseEntity<>(
                 new StandardResponse(200, "Company details", companyDetailsResponseDTO),

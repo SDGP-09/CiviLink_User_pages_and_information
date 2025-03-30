@@ -2,16 +2,16 @@ package com.example.demo.dtos.request;
 
 public class AddUpdateRequestDTO {
 
-    private Long rateReceiver;
+    private String rateReceiver;
 
     private int rating;
 
 
-    public Long getRateReceiver() {
+    public String getRateReceiver() {
         return rateReceiver;
     }
 
-    public void setRateReceiver(Long rateReceiver) {
+    public void setRateReceiver(String rateReceiver) {
         this.rateReceiver = rateReceiver;
     }
 
@@ -23,7 +23,7 @@ public class AddUpdateRequestDTO {
         this.rating = rating;
     }
 
-    public AddUpdateRequestDTO(Long rateReceiver, int rating) {
+    public AddUpdateRequestDTO(String rateReceiver, int rating) {
         this.rateReceiver = rateReceiver;
         this.rating = rating;
     }

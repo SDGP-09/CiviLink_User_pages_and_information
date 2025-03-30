@@ -3,7 +3,7 @@ package com.example.demo.dtos.request;
 import com.example.demo.enums.ContractorField;
 
 public class ContractorCreationRequestDTO {
-    private Long id;
+    private String id;
     private String name;
     private String location;
     private String companyName;
@@ -11,11 +11,11 @@ public class ContractorCreationRequestDTO {
 
 
 
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -52,7 +52,7 @@ public class ContractorCreationRequestDTO {
     }
 
     public ContractorCreationRequestDTO(
-            Long id,
+            String id,
             String name,
             String location,
             String companyName,

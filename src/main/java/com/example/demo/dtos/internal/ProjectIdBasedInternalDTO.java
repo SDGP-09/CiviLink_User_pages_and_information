@@ -3,7 +3,7 @@ package com.example.demo.dtos.internal;
 public class ProjectIdBasedInternalDTO {
 
     private Long addId;
-    private Long contractorId;
+    private String contractorId;
 
     public Long getAddId() {
         return addId;
@@ -13,15 +13,15 @@ public class ProjectIdBasedInternalDTO {
         this.addId = addId;
     }
 
-    public Long getOwnerId() {
+    public String getOwnerId() {
         return contractorId;
     }
 
-    public void setOwnerId(Long ownerId) {
+    public void setOwnerId(String ownerId) {
         this.contractorId = ownerId;
     }
 
-    public ProjectIdBasedInternalDTO(Long addId, Long ownerId) {
+    public ProjectIdBasedInternalDTO(Long addId, String ownerId) {
         this.addId = addId;
         this.contractorId = ownerId;
     }

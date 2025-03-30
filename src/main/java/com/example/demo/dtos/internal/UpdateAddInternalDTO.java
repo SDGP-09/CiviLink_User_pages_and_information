@@ -6,7 +6,7 @@ import org.springframework.web.multipart.MultipartFile;
 public class UpdateAddInternalDTO {
 
     private Long id;
-    private Long OwnerId;
+    private String OwnerId;
     private String title;
     private String description;
     private DealField dealField;
@@ -30,11 +30,11 @@ public class UpdateAddInternalDTO {
         this.id = id;
     }
 
-    public Long getOwnerId() {
+    public String getOwnerId() {
         return OwnerId;
     }
 
-    public void setOwnerId(Long ownerId) {
+    public void setOwnerId(String ownerId) {
         OwnerId = ownerId;
     }
 
@@ -143,7 +143,7 @@ public class UpdateAddInternalDTO {
     }
 
     public UpdateAddInternalDTO(Long id,
-                                Long ownerId,
+                                String ownerId,
                                 String title,
                                 String description,
                                 DealField dealField,

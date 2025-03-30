@@ -1,24 +1,24 @@
 package com.example.demo.dtos.internal;
 
 public class AddUpdateRatingInternalDTO {
-    private Long rateReceiver;
-    private Long rateSender;
+    private String rateReceiver;
+    private String rateSender;
     private int rating;
 
 
-    public Long getRateReceiver() {
+    public String getRateReceiver() {
         return rateReceiver;
     }
 
-    public void setRateReceiver(Long rateReceiver) {
+    public void setRateReceiver(String rateReceiver) {
         this.rateReceiver = rateReceiver;
     }
 
-    public Long getRateSender() {
+    public String getRateSender() {
         return rateSender;
     }
 
-    public void setRateSender(Long rateSender) {
+    public void setRateSender(String rateSender) {
         this.rateSender = rateSender;
     }
 
@@ -30,7 +30,7 @@ public class AddUpdateRatingInternalDTO {
         this.rating = rating;
     }
 
-    public AddUpdateRatingInternalDTO(Long rateReceiver, Long rateSender, int rating) {
+    public AddUpdateRatingInternalDTO(String rateReceiver, String rateSender, int rating) {
         this.rateReceiver = rateReceiver;
         this.rateSender = rateSender;
         this.rating = rating;

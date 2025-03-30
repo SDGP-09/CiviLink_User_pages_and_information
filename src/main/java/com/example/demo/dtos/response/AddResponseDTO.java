@@ -4,7 +4,7 @@ import com.example.demo.enums.DealField;
 
 public class AddResponseDTO {
     private Long id;
-    private Long ownerId;
+    private String ownerId;
     private String title;
     private String description;
     private DealField dealField;
@@ -27,11 +27,11 @@ public class AddResponseDTO {
         this.id = id;
     }
 
-    public Long getOwnerId() {
+    public String getOwnerId() {
         return ownerId;
     }
 
-    public void setOwnerId(Long ownerId) {
+    public void setOwnerId(String ownerId) {
         this.ownerId = ownerId;
     }
 
@@ -133,7 +133,7 @@ public class AddResponseDTO {
 
     public AddResponseDTO(
             Long id,
-            Long ownerId,
+            String ownerId,
             String title,
             String description,
             DealField dealField,
